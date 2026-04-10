@@ -1,0 +1,534 @@
+/* ── Getting Started Page ── */
+
+/* Full-screen overlay (same as homepage) */
+.container {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  background-color: #09090f;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 32px 32px;
+  z-index: 999;
+  color: #c8d8c8;
+  font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+}
+
+/* Navbar (same pill style as homepage) */
+.nav {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  min-width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  height: 52px;
+  background: rgba(9, 9, 15, 0.82);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(93, 184, 93, 0.18);
+  border-radius: 6px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.03);
+  z-index: 100;
+}
+
+.navLogo {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  color: #5db85d;
+  text-shadow: 0 0 16px rgba(93, 184, 93, 0.7);
+  letter-spacing: 6px;
+  text-decoration: none;
+}
+
+.navLinks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 36px;
+}
+
+.navLink {
+  font-size: 13px;
+  color: #9999aa;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+
+.navLink:hover {
+  color: #5db85d;
+}
+
+/* Page content */
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 120px 32px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Particles */
+.particles {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  background: #5db85d;
+  opacity: 0;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0) translateX(0); opacity: 0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.2; }
+  100% { transform: translateY(-80vh) translateX(20px); opacity: 0; }
+}
+
+/* Hero */
+.hero {
+  margin-bottom: 40px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid #222233;
+}
+
+.eyebrow {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: #5db85d;
+  letter-spacing: 3px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #ddeedd;
+  margin: 0 0 12px;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #7a9a7a;
+  margin: 0;
+}
+
+/* Server IP hero block — outer wrapper holds the flowing border */
+.ipHeroWrap {
+  position: relative;
+  border-radius: 7px;
+  padding: 1px;
+  margin-bottom: 32px;
+  background: conic-gradient(
+    from var(--borderAngle, 0deg),
+    transparent 0deg,
+    rgba(93, 184, 93, 0.15) 30deg,
+    #5db85d 60deg,
+    rgba(93, 184, 93, 0.15) 90deg,
+    transparent 120deg
+  );
+  animation: rotateBorder 3s linear infinite;
+}
+
+@property --borderAngle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotateBorder {
+  to { --borderAngle: 360deg; }
+}
+
+/* Server IP hero block */
+.ipHero {
+  position: relative;
+  text-align: center;
+  padding: 44px 36px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(93, 184, 93, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(30, 60, 30, 0.3) 0%, transparent 60%),
+    linear-gradient(160deg, #0d1a0d 0%, #080c10 50%, #0a0d16 100%);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* dot-grid texture overlay */
+.ipHero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(93, 184, 93, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at 50% 50%, black 30%, transparent 75%);
+}
+
+/* subtle vignette */
+.ipHero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.5) 100%);
+  pointer-events: none;
+}
+
+.ipHeroLabel {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #5db85d;
+  letter-spacing: 4px;
+  margin: 0 0 16px;
+  opacity: 0.7;
+}
+
+.ipHeroValue {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 22px;
+  color: #ddeedd;
+  margin: 0 0 28px;
+  letter-spacing: 3px;
+  text-shadow: 0 0 20px rgba(93, 184, 93, 0.5);
+}
+
+.ipHeroBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 36px;
+  background: linear-gradient(135deg, rgba(93,184,93,0.15), rgba(93,184,93,0.05));
+  border: 1px solid rgba(93, 184, 93, 0.5);
+  border-radius: 4px;
+  color: #5db85d;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s;
+  box-shadow: 0 0 20px rgba(93, 184, 93, 0.1), inset 0 0 20px rgba(93,184,93,0.03);
+}
+
+.ipHeroBtn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(93,184,93,0.12), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+}
+
+.ipHeroBtn:hover {
+  background: linear-gradient(135deg, rgba(93,184,93,0.25), rgba(93,184,93,0.1));
+  border-color: #5db85d;
+  color: #7dd87d;
+  box-shadow: 0 0 32px rgba(93, 184, 93, 0.25), inset 0 0 20px rgba(93,184,93,0.06);
+  transform: translateY(-1px);
+}
+
+.ipHeroBtn:hover::before {
+  transform: translateX(100%);
+}
+
+.ipHeroBtnDone {
+  background: linear-gradient(135deg, rgba(93,184,93,0.25), rgba(93,184,93,0.1)) !important;
+  border-color: #5db85d !important;
+  color: #7dd87d !important;
+  box-shadow: 0 0 32px rgba(93, 184, 93, 0.3) !important;
+}
+
+.ipHeroBtnIcon {
+  font-size: 16px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #111122;
+  border: 1px solid #222233;
+  border-radius: 4px;
+  color: #667788;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  border-color: rgba(93, 184, 93, 0.3);
+  color: #aabbaa;
+}
+
+.tabActive {
+  border-color: #5db85d;
+  color: #ddeedd;
+  background: rgba(93, 184, 93, 0.08);
+}
+
+.tabIcon {
+  font-size: 15px;
+}
+
+/* Section */
+.section {
+  margin-bottom: 56px;
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ddeedd;
+  margin: 0 0 24px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #222233;
+}
+
+/* Steps */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stepCard {
+  display: flex;
+  gap: 24px;
+  background: #111122;
+  border: 1px solid #222233;
+  border-left: 3px solid #5db85d;
+  padding: 20px 24px;
+  border-radius: 4px;
+  transition: border-color 0.2s;
+}
+
+.stepCard:hover {
+  border-color: rgba(93, 184, 93, 0.5);
+  border-left-color: #5db85d;
+}
+
+.stepNum {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 16px;
+  color: #2a3a2a;
+  flex-shrink: 0;
+  width: 40px;
+  padding-top: 3px;
+}
+
+.stepBody {
+  flex: 1;
+}
+
+.stepTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ddeedd;
+  margin: 0 0 6px;
+}
+
+.stepDesc {
+  font-size: 0.875rem;
+  color: #7a9a7a;
+  margin: 0;
+  line-height: 1.7;
+}
+
+.stepLink {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #5db85d;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(93, 184, 93, 0.3);
+  transition: color 0.2s;
+}
+
+.stepLink:hover {
+  color: #7dd87d;
+  border-bottom-color: #7dd87d;
+}
+
+/* Info grid */
+/* Server meta row inside hero card */
+.ipMeta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 0;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(93, 184, 93, 0.1);
+}
+
+.ipMetaItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0 20px;
+}
+
+.ipMetaDot {
+  width: 1px;
+  height: 28px;
+  background: rgba(93, 184, 93, 0.2);
+  flex-shrink: 0;
+}
+
+.ipMetaKey {
+  font-size: 10px;
+  color: #4a6a4a;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.ipMetaVal {
+  font-size: 13px;
+  font-weight: 600;
+  color: #aaccaa;
+  letter-spacing: 0.5px;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.infoCard {
+  background: #111122;
+  border: 1px solid #222233;
+  border-radius: 4px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.infoLabel {
+  font-size: 11px;
+  color: #445566;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.infoValue {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ddeedd;
+}
+
+/* Rules */
+.rulesIntro {
+  font-size: 0.9rem;
+  color: #7a9a7a;
+  margin: 0 0 24px;
+}
+
+.ruleGroup {
+  margin-bottom: 24px;
+}
+
+.ruleGroupHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.ruleGroupDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ruleGroupLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.rulesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ruleItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid #1e2230;
+  border-left: 3px solid #2a3a2a;
+  border-radius: 4px;
+  padding: 13px 18px;
+  font-size: 0.88rem;
+  color: #b8ccb8;
+  line-height: 1.6;
+}
+
+.ruleItemRed {
+  border-left-color: #8b3030;
+  background: rgba(180, 40, 40, 0.05);
+  color: #d0a0a0;
+}
+
+.ruleIcon {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid #1a1a2a;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footerLogo {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  color: #2a3a2a;
+  letter-spacing: 3px;
+}
+
+.footerText {
+  font-size: 12px;
+  color: #2a3a3a;
+  margin: 0;
+}
+
