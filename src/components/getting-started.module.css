@@ -442,6 +442,114 @@
   color: #ddeedd;
 }
 
+/* Mod cards */
+.modCards {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modCardsLabel {
+  font-size: 11px;
+  color: #5db85d;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+}
+
+.modCardsOr {
+  font-size: 11px;
+  color: #445566;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: 4px 0;
+  text-align: center;
+}
+
+.modCardRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid #1e2230;
+  border-radius: 6px;
+  padding: 12px 16px;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.modCard:hover {
+  border-color: rgba(93,184,93,0.4);
+  background: rgba(93,184,93,0.05);
+}
+
+.modCardFeatured {
+  border-color: rgba(93,184,93,0.25);
+  background: rgba(93,184,93,0.04);
+}
+
+.modCardFeatured:hover {
+  border-color: rgba(93,184,93,0.6);
+  background: rgba(93,184,93,0.08);
+}
+
+.modCardIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.modCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.modCardBadge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #e07070;
+  background: rgba(180,40,40,0.15);
+  border: 1px solid rgba(180,40,40,0.3);
+  border-radius: 3px;
+  padding: 1px 6px;
+  width: fit-content;
+  text-transform: uppercase;
+}
+
+.modCardBadgeFeatured {
+  color: #5db85d;
+  background: rgba(93,184,93,0.12);
+  border-color: rgba(93,184,93,0.3);
+}
+
+.modCardName {
+  font-size: 13px;
+  font-weight: 700;
+  color: #cce0cc;
+}
+
+.modCardDesc {
+  font-size: 12px;
+  color: #667788;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Rules */
 .rulesIntro {
   font-size: 0.9rem;

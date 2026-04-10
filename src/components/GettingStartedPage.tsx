@@ -17,34 +17,74 @@ const PARTICLES = [
   { left: '72%', delay: '6s',   duration: '8s',  size: 2 },
 ]
 
-const STEPS_OFFICIAL = [
+type Step = {
+  step: string
+  title: string
+  desc: string
+  link: { label: string; href: string } | null
+  mods?: boolean
+}
+
+const MOD_CARDS = [
+  {
+    name: "Xaero's World Map",
+    desc: '全屏世界地图，显示你探索过的区域，配合小地图使用效果最佳。',
+    icon: 'https://cdn.modrinth.com/data/NcUtCpym/354080f65407e49f486fcf9c4580e82c45ae63b8_96.webp',
+    href: 'https://modrinth.com/mod/xaeros-world-map',
+    badge: '必装',
+  },
+  {
+    name: "Xaero's Minimap",
+    desc: '屏幕角落显示周边地形小地图，支持创建路径点标记位置。',
+    icon: 'https://cdn.modrinth.com/data/1bokaNcj/354080f65407e49f486fcf9c4580e82c45ae63b8_96.webp',
+    href: 'https://modrinth.com/mod/xaeros-minimap',
+    badge: '必装',
+  },
+]
+
+const MODPACK_CARD = {
+  name: 'XPlus PerioTable Modpack (Fabric)',
+  desc: '包含上述地图 Mod 的整合包，提升原版游戏体验且不改变游戏机制，推荐直接使用。',
+  icon: 'https://cdn.modrinth.com/data/UCpApD3P/eb989b0763ca1ad11ee37e879ff2024294db410f_96.webp',
+  href: 'https://modrinth.com/modpack/xplus-2.0-modpack-global',
+  badge: '推荐整合包',
+}
+
+const STEPS_OFFICIAL: Step[] = [
   {
     step: '01',
+    title: '准备 Mod（重要）',
+    desc: '加入服务器前，请确保安装以下两个地图 Mod，或直接使用推荐整合包。',
+    link: null,
+    mods: true,
+  },
+  {
+    step: '02',
     title: '启动正版游戏',
     desc: '打开 Minecraft 官方启动器，登录你的 Microsoft 账号，选择 Java 版（1.21+）启动。',
     link: null,
   },
   {
-    step: '02',
+    step: '03',
     title: '进入多人游戏',
     desc: '在主界面点击「多人游戏」，然后选择「添加服务器」。',
     link: null,
   },
   {
-    step: '03',
+    step: '04',
     title: '填入服务器地址',
     desc: '服务器名称随意填写，地址填入上方的服务器 IP，点击完成。',
     link: null,
   },
   {
-    step: '04',
+    step: '05',
     title: '加入游戏',
     desc: '双击服务器即可连接，初次进入可能需要等待几秒加载。',
     link: null,
   },
 ]
 
-const STEPS_CRACKED = [
+const STEPS_CRACKED: Step[] = [
   {
     step: '01',
     title: '下载第三方启动器',
@@ -223,6 +263,32 @@ export default function GettingStartedPage() {
                     <a href={s.link.href} target="_blank" rel="noopener noreferrer" className={styles.stepLink}>
                       {s.link.label} →
                     </a>
+                  )}
+                  {'mods' in s && s.mods && (
+                    <div className={styles.modCards}>
+                      <p className={styles.modCardsLabel}>单独安装（选其一或全装）</p>
+                      <div className={styles.modCardRow}>
+                        {MOD_CARDS.map((mod) => (
+                          <a key={mod.href} href={mod.href} target="_blank" rel="noopener noreferrer" className={styles.modCard}>
+                            <img src={mod.icon} alt={mod.name} className={styles.modCardIcon} />
+                            <div className={styles.modCardBody}>
+                              <span className={styles.modCardBadge}>{mod.badge}</span>
+                              <span className={styles.modCardName}>{mod.name}</span>
+                              <span className={styles.modCardDesc}>{mod.desc}</span>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                      <p className={styles.modCardsOr}>或者直接使用整合包</p>
+                      <a href={MODPACK_CARD.href} target="_blank" rel="noopener noreferrer" className={`${styles.modCard} ${styles.modCardFeatured}`}>
+                        <img src={MODPACK_CARD.icon} alt={MODPACK_CARD.name} className={styles.modCardIcon} />
+                        <div className={styles.modCardBody}>
+                          <span className={`${styles.modCardBadge} ${styles.modCardBadgeFeatured}`}>{MODPACK_CARD.badge}</span>
+                          <span className={styles.modCardName}>{MODPACK_CARD.name}</span>
+                          <span className={styles.modCardDesc}>{MODPACK_CARD.desc}</span>
+                        </div>
+                      </a>
+                    </div>
                   )}
                 </div>
               </div>
