@@ -1007,3 +1007,103 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ========== SKIN PEEK ========== */
+.skinPeek {
+  position: fixed;
+  top: calc(50% + var(--peek-offset-y, 0px));
+  z-index: 50;
+  pointer-events: auto;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.skinPeekLeft {
+  left: 0;
+  transform: translateY(-50%) translateX(-100%) rotate(30deg);
+  transform-origin: center right;
+}
+
+.skinPeekRight {
+  right: 0;
+  transform: translateY(-50%) translateX(100%) rotate(-30deg);
+  transform-origin: center left;
+}
+
+.skinPeekLeft.skinPeekVisible {
+  opacity: 1;
+  transform: translateY(-50%) translateX(-40%) rotate(30deg);
+}
+
+.skinPeekRight.skinPeekVisible {
+  opacity: 1;
+  transform: translateY(-50%) translateX(40%) rotate(-30deg);
+}
+
+.skinPeekCanvas {
+  width: 160px;
+  height: 300px;
+}
+
+.skinPeekInfo {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 12px 16px;
+  background: rgba(9, 9, 15, 0.92);
+  border: 1px solid var(--skin-color, #5db85d);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 15px color-mix(in srgb, var(--skin-color, #5db85d) 20%, transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.skinPeekInfoLeft {
+  left: 100%;
+  margin-left: -40px;
+  transform: translateY(-50%) translateX(-10px);
+}
+
+.skinPeekInfoRight {
+  right: 100%;
+  margin-right: -40px;
+  transform: translateY(-50%) translateX(10px);
+}
+
+.skinPeekInfoVisible {
+  opacity: 1;
+}
+
+.skinPeekInfoLeft.skinPeekInfoVisible {
+  transform: translateY(-50%) translateX(0);
+}
+
+.skinPeekInfoRight.skinPeekInfoVisible {
+  transform: translateY(-50%) translateX(0);
+}
+
+.skinPeekTag {
+  display: block;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: var(--skin-color, #5db85d);
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.skinPeekName {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: #e0e0e0;
+  margin-bottom: 2px;
+}
+
+.skinPeekRole {
+  display: block;
+  font-size: 11px;
+  color: #667788;
+}

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useRef, useEffect, useState } from 'react'
 import styles from './about.module.css'
 
 const PARTICLES = [
@@ -17,41 +18,130 @@ const TEAM = [
   {
     role: '服务器创始人',
     name: 'zhang',
+    username: 'zhang',
     tag: 'FOUNDER',
     desc: '服务器的创立者与愿景的守护者，从零开始搭建起这片生电大陆，为所有玩家提供稳定、纯粹的原版生存体验。负责服务器的整体方向与长期运营决策。',
     color: '#f0c060',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-      </svg>
-    ),
   },
   {
     role: '核心管理',
     name: 'sixihappy',
+    username: 'sixihappy',
     tag: 'ADMIN',
     desc: '服务器的核心管理员，维护社区秩序、处理玩家事务，确保每一位成员都能在公平友善的环境中游玩。同时负责白名单审核与群内事务协调。',
     color: '#5db85d',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-      </svg>
-    ),
   },
   {
     role: '开发团队',
     name: 'remrinya',
+    username: 'remrinya',
     tag: 'DEV',
     desc: '负责服务器网站与技术基础设施的开发与维护，包括本站的构建部署与持续迭代。以代码为砖瓦，为玩家社区打造更好的数字体验。',
     color: '#7090e0',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="16 18 22 12 16 6"/>
-        <polyline points="8 6 2 12 8 18"/>
-      </svg>
-    ),
   },
 ]
+
+function McAvatar({ username, color }: { username: string; color: string }) {
+  return (
+    <div className={styles.avatarContainer} style={{ '--member-color': color } as React.CSSProperties}>
+      <img
+        src={`https://mc-heads.net/avatar/${username}/64`}
+        alt={username}
+        width={64}
+        height={64}
+        className={styles.mcAvatar}
+      />
+    </div>
+  )
+}
+
+function MemberCard({ member }: { member: typeof TEAM[number] }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
+  const viewerRef = useRef<any>(null)
+  const [isHovered, setIsHovered] = useState(false)
+  const [is3DReady, setIs3DReady] = useState(false)
+
+  useEffect(() => {
+    if (!isHovered || !canvasRef.current || viewerRef.current) return
+
+    let mounted = true
+
+    import('skinview3d').then(({ SkinViewer }) => {
+      if (!mounted || !canvasRef.current) return
+
+      const viewer = new SkinViewer({
+        canvas: canvasRef.current,
+        width: 140,
+        height: 240,
+        skin: `https://mc-heads.net/skin/${member.username}`,
+      })
+
+      viewer.camera.position.set(0, 5, 32)
+      viewer.camera.lookAt(0, 5, 0)
+      viewer.autoRotate = false
+      viewer.zoom = 0.85
+      
+      if (viewer.playerObject) {
+        viewer.playerObject.position.y = -8
+      }
+
+      viewerRef.current = viewer
+      setIs3DReady(true)
+    })
+
+    return () => {
+      mounted = false
+    }
+  }, [isHovered, member.username])
+
+  useEffect(() => {
+    if (!isHovered && viewerRef.current) {
+      viewerRef.current.dispose()
+      viewerRef.current = null
+      setIs3DReady(false)
+    }
+  }, [isHovered])
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!viewerRef.current?.playerObject || !cardRef.current) return
+
+    const rect = cardRef.current.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
+
+    const deltaX = (e.clientX - centerX) / rect.width
+    const deltaY = (e.clientY - centerY) / rect.height
+
+    const skin = viewerRef.current.playerObject.skin
+    if (skin?.head) {
+      skin.head.rotation.y = deltaX * 0.8
+      skin.head.rotation.x = deltaY * 0.4
+    }
+  }
+
+  return (
+    <div
+      ref={cardRef}
+      className={styles.memberCard}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onMouseMove={handleMouseMove}
+    >
+      <canvas
+        ref={canvasRef}
+        className={`${styles.skinCanvas} ${isHovered && is3DReady ? styles.skinCanvasVisible : ''}`}
+      />
+      <div className={styles.memberContent}>
+        <McAvatar username={member.username} color={member.color} />
+        <div className={styles.memberTag} style={{ color: member.color }}>{member.tag}</div>
+        <div className={styles.memberName}>{member.name}</div>
+        <div className={styles.memberRole}>{member.role}</div>
+        <p className={styles.memberDesc}>{member.desc}</p>
+      </div>
+    </div>
+  )
+}
 
 export default function AboutPage() {
   return (
@@ -117,15 +207,7 @@ export default function AboutPage() {
           <h2 className={styles.teamHeading}>团队成员</h2>
           <div className={styles.teamGrid}>
             {TEAM.map((member) => (
-              <div key={member.name} className={styles.memberCard}>
-                <div className={styles.memberIconWrap} style={{ '--member-color': member.color } as React.CSSProperties}>
-                  {member.icon}
-                </div>
-                <div className={styles.memberTag} style={{ color: member.color }}>{member.tag}</div>
-                <div className={styles.memberName}>{member.name}</div>
-                <div className={styles.memberRole}>{member.role}</div>
-                <p className={styles.memberDesc}>{member.desc}</p>
-              </div>
+              <MemberCard key={member.name} member={member} />
             ))}
           </div>
         </section>
