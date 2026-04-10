@@ -660,6 +660,34 @@
   text-overflow: ellipsis;
 }
 
+/* Mod cards responsive */
+@media (max-width: 600px) {
+  .modCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px;
+  }
+  
+  .modCardIcon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .modCardBody {
+    width: 100%;
+  }
+  
+  .modCardName {
+    font-size: 12px;
+  }
+  
+  .modCardDesc {
+    white-space: normal;
+    font-size: 11px;
+  }
+}
+
 /* Rules */
 .rulesIntro {
   font-size: 0.9rem;
@@ -923,4 +951,48 @@
 
 .registerDemoArg {
   color: #7a9ab0;
+}
+
+/* Global responsive */
+@media (max-width: 600px) {
+  .page {
+    padding: 100px 16px 60px;
+  }
+  
+  .hero {
+    padding: 0 0 32px;
+  }
+  
+  .title {
+    font-size: 28px;
+  }
+  
+  .subtitle {
+    font-size: 13px;
+  }
+  
+  .tabs {
+    gap: 8px;
+  }
+  
+  .tab {
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+  
+  .stepCard {
+    padding: 20px;
+  }
+  
+  .stepNumber {
+    font-size: 32px;
+  }
+  
+  .stepTitle {
+    font-size: 16px;
+  }
+  
+  .stepDesc {
+    font-size: 13px;
+  }
 }
