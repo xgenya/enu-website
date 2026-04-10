@@ -16,9 +16,9 @@ const FEATURES = [
     desc: '坚守原版生存的纯粹体验，不做多余的堆砌。少量自研插件只在关键处画龙点睛，让每一次游玩都有恰到好处的新鲜感',
   },
   {
-    icon: '/images/mc-icons/diamond_pickaxe.png',
-    title: '精心调校的世界',
-    desc: '深度优化的地形生成，让每一片山川都更具探索价值。无论是高耸入云的雪峰，还是幽深曲折的洞穴，都值得你驻足停留',
+    icon: '/images/mc-icons/repeater.png',
+    title: '为红石留足空间',
+    desc: '完善的红石基础设施，保留原版特性不做阉割。无论多复杂的装置，都能稳定运行、如你所愿',
   },
   {
     icon: '/images/mc-icons/torch.png',
@@ -153,6 +153,115 @@ export default function MCHomePage() {
 
       <div className={styles.dirtDivider} aria-hidden="true" />
       <div className={styles.grassDivider} aria-hidden="true" />
+
+      {/* ── Hardware ── */}
+      <div className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <span className={styles.sectionEyebrow}>INFRASTRUCTURE</span>
+          <h2 className={styles.sectionTitle}>为稳定<em>全力以赴</em></h2>
+          <p className={styles.sectionSubtitle}>
+            工业级服务器硬件，专为 Minecraft 高负载场景深度调优
+          </p>
+        </div>
+
+        {/* Chip Animation */}
+        <div className={styles.chipWrap}>
+          {/* Concentric rings */}
+          <div className={`${styles.chipRing} ${styles.chipRing1}`}>
+            <span className={styles.chipRingDot} />
+          </div>
+          <div className={`${styles.chipRing} ${styles.chipRing2}`}>
+            <span className={`${styles.chipRingDot} ${styles.chipRingDot2}`} />
+          </div>
+          <div className={`${styles.chipRing} ${styles.chipRing3}`}>
+            <span className={`${styles.chipRingDot} ${styles.chipRingDot3}`} />
+          </div>
+
+          {/* CPU chip */}
+          <div className={styles.chipBox}>
+            <div className={styles.chipInner}>
+              {/* Pins top */}
+              <div className={`${styles.chipPins} ${styles.chipPinsTop}`}>
+                {[...Array(6)].map((_, i) => <span key={i} className={styles.chipPin} />)}
+              </div>
+              {/* Pins bottom */}
+              <div className={`${styles.chipPins} ${styles.chipPinsBottom}`}>
+                {[...Array(6)].map((_, i) => <span key={i} className={styles.chipPin} />)}
+              </div>
+              {/* Pins left */}
+              <div className={`${styles.chipPins} ${styles.chipPinsLeft}`}>
+                {[...Array(5)].map((_, i) => <span key={i} className={`${styles.chipPin} ${styles.chipPinH}`} />)}
+              </div>
+              {/* Pins right */}
+              <div className={`${styles.chipPins} ${styles.chipPinsRight}`}>
+                {[...Array(5)].map((_, i) => <span key={i} className={`${styles.chipPin} ${styles.chipPinH}`} />)}
+              </div>
+              {/* CPU icon SVG */}
+              <svg className={styles.chipSvg} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="4" y="4" width="16" height="16" rx="2"/>
+                <rect x="8" y="8" width="8" height="8" rx="1"/>
+                <path d="M12 2v2M17 2v2M7 2v2"/>
+                <path d="M12 20v2M17 20v2M7 20v2"/>
+                <path d="M2 12h2M2 17h2M2 7h2"/>
+                <path d="M20 12h2M20 17h2M20 7h2"/>
+              </svg>
+              <div className={styles.chipCorner} style={{top:6,left:6}}/>
+              <div className={styles.chipCorner} style={{top:6,right:6}}/>
+              <div className={styles.chipCorner} style={{bottom:6,left:6}}/>
+              <div className={styles.chipCorner} style={{bottom:6,right:6}}/>
+            </div>
+          </div>
+          <div className={styles.chipLabel}>
+            <span className={styles.chipLabelMuted}>AMD</span>
+            <span className={styles.chipLabelBrand}> EPYC™</span>
+          </div>
+        </div>
+
+        {/* Big stats row */}
+        <div className={styles.hwBigStats}>
+          <div className={styles.hwBigStat}>
+            <span className={styles.hwBigStatVal}>20</span>
+            <span className={styles.hwBigStatUnit}>TPS</span>
+            <span className={styles.hwBigStatLabel}>满帧运行</span>
+          </div>
+          <div className={styles.hwBigStatDivider}/>
+          <div className={styles.hwBigStat}>
+            <span className={styles.hwBigStatVal}>16</span>
+            <span className={styles.hwBigStatUnit}>GB</span>
+            <span className={styles.hwBigStatLabel}>运行内存</span>
+          </div>
+          <div className={styles.hwBigStatDivider}/>
+          <div className={styles.hwBigStat}>
+            <span className={styles.hwBigStatVal}>24</span>
+            <span className={styles.hwBigStatUnit}>/ 7</span>
+            <span className={styles.hwBigStatLabel}>持续在线</span>
+          </div>
+        </div>
+
+        {/* Spec cards */}
+        <div className={styles.hardwareGrid}>
+          {[
+            { label: '处理器', value: 'AMD EPYC™', sub: '高性能多核处理器', icon: '⚙️' },
+            { label: '内存', value: '16 GB', sub: 'DDR5 高速内存', icon: '🧠' },
+            { label: '存储', value: 'SSD', sub: '低延迟固态存储', icon: '💾' },
+            { label: '网络', value: '100 Mbps', sub: '低延迟稳定专线', icon: '🌐' },
+            { label: '服务端', value: 'Paper', sub: '高性能 Minecraft 核心', icon: '📦' },
+            { label: '版本', value: '1.21.1', sub: 'Java Edition', icon: '🎮' },
+          ].map((item) => (
+            <div key={item.label} className={styles.hwCard}>
+              <div className={styles.hwCardIcon}>{item.icon}</div>
+              <div className={styles.hwCardBody}>
+                <span className={styles.hwCardLabel}>{item.label}</span>
+                <span className={styles.hwCardValue}>{item.value}</span>
+                <span className={styles.hwCardSub}>{item.sub}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className={styles.grassDivider} aria-hidden="true" />
+      <div className={styles.dirtDivider} aria-hidden="true" />
 
       {/* ── Gallery ── */}
       <div className={styles.gallerySection}>

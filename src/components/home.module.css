@@ -579,3 +579,312 @@
   0%, 100% { transform: rotate(45deg) translateY(0); }
   50%       { transform: rotate(45deg) translateY(4px); }
 }
+
+/* ========== HARDWARE SECTION ========== */
+
+/* ── Chip Animation ── */
+.chipWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 340px;
+  height: 340px;
+  margin: 0 auto 40px;
+}
+
+/* Concentric rings */
+.chipRing {
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.chipRing1 {
+  width: 320px;
+  height: 320px;
+  border: 1.5px dashed rgba(93,184,93,0.2);
+  animation: ringRotate 20s linear infinite;
+}
+
+.chipRing2 {
+  width: 240px;
+  height: 240px;
+  border: 1px solid rgba(93,184,93,0.14);
+  animation: ringRotate 14s linear infinite reverse;
+}
+
+.chipRing3 {
+  width: 170px;
+  height: 170px;
+  border: 1px solid rgba(93,184,93,0.1);
+  animation: ringRotate 9s linear infinite;
+}
+
+@keyframes ringRotate {
+  to { transform: rotate(360deg); }
+}
+
+/* Orbiting dots */
+.chipRingDot {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #5db85d;
+  box-shadow: 0 0 14px rgba(93,184,93,0.9), 0 0 28px rgba(93,184,93,0.5);
+}
+
+.chipRingDot2 {
+  width: 7px;
+  height: 7px;
+  background: #8ad08a;
+  box-shadow: 0 0 10px rgba(93,184,93,0.7);
+}
+
+.chipRingDot3 {
+  width: 5px;
+  height: 5px;
+  top: -4px;
+  background: #5db85d;
+  box-shadow: 0 0 8px rgba(93,184,93,0.6);
+}
+
+/* CPU chip box */
+.chipBox {
+  position: relative;
+  z-index: 10;
+  width: 110px;
+  height: 110px;
+  border-radius: 14px;
+  background: rgba(12,18,12,0.95);
+  border: 2px solid rgba(93,184,93,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 30px rgba(93,184,93,0.15), inset 0 0 20px rgba(93,184,93,0.05);
+}
+
+.chipInner {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(93,184,93,0.12), rgba(93,184,93,0.04));
+  border: 1.5px solid rgba(93,184,93,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pins */
+.chipPins {
+  position: absolute;
+  display: flex;
+  gap: 5px;
+}
+
+.chipPinsTop {
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: row;
+}
+
+.chipPinsBottom {
+  bottom: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: row;
+}
+
+.chipPinsLeft {
+  left: -9px;
+  top: 50%;
+  transform: translateY(-50%);
+  flex-direction: column;
+}
+
+.chipPinsRight {
+  right: -9px;
+  top: 50%;
+  transform: translateY(-50%);
+  flex-direction: column;
+}
+
+.chipPin {
+  display: block;
+  width: 3px;
+  height: 7px;
+  background: rgba(93,184,93,0.25);
+  border-radius: 1px;
+}
+
+.chipPinH {
+  width: 7px;
+  height: 3px;
+}
+
+/* CPU SVG icon */
+.chipSvg {
+  width: 42px;
+  height: 42px;
+  color: #5db85d;
+  filter: drop-shadow(0 0 10px rgba(93,184,93,0.7));
+}
+
+/* Corner dots on chip */
+.chipCorner {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #5db85d;
+  box-shadow: 0 0 6px rgba(93,184,93,0.9);
+}
+
+/* Label below chip */
+.chipLabel {
+  position: absolute;
+  bottom: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: monospace;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.chipLabelMuted {
+  color: #445566;
+}
+
+.chipLabelBrand {
+  color: #5db85d;
+  font-weight: 700;
+}
+
+/* ── Big stats row ── */
+.hwBigStats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin: 0 auto 48px;
+  max-width: 600px;
+}
+
+.hwBigStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0 40px;
+}
+
+.hwBigStatVal {
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1;
+  color: #5db85d;
+  font-family: monospace;
+  text-shadow: 0 0 20px rgba(93,184,93,0.4);
+}
+
+.hwBigStatUnit {
+  font-size: 16px;
+  font-weight: 700;
+  color: #5db85d;
+  opacity: 0.7;
+  font-family: monospace;
+  margin-top: -4px;
+}
+
+.hwBigStatLabel {
+  font-size: 11px;
+  color: #445566;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.hwBigStatDivider {
+  width: 1px;
+  height: 50px;
+  background: rgba(93,184,93,0.12);
+  flex-shrink: 0;
+}
+
+/* ── Spec cards grid ── */
+.hardwareGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+  .hardwareGrid { grid-template-columns: repeat(2, 1fr); }
+  .hwBigStat { padding: 0 20px; }
+  .hwBigStatVal { font-size: 36px; }
+}
+
+@media (max-width: 440px) {
+  .hardwareGrid { grid-template-columns: 1fr; }
+}
+
+.hwCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(93,184,93,0.1);
+  border-radius: 8px;
+  padding: 18px 20px;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.hwCard:hover {
+  border-color: rgba(93,184,93,0.28);
+  background: rgba(93,184,93,0.04);
+  box-shadow: 0 0 20px rgba(93,184,93,0.06);
+}
+
+.hwCardIcon {
+  font-size: 22px;
+  flex-shrink: 0;
+  width: 38px;
+  text-align: center;
+}
+
+.hwCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hwCardLabel {
+  font-size: 10px;
+  color: #445566;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.hwCardValue {
+  font-size: 18px;
+  font-weight: 700;
+  color: #aaccaa;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.hwCardSub {
+  font-size: 11px;
+  color: #445566;
+}
