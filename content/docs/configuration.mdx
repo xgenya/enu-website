@@ -1,0 +1,57 @@
+---
+title: 配置
+description: 了解如何自定义 ENU Website 的配置
+---
+
+import { Callout } from 'nextra/components'
+
+# 配置
+
+## next.config.mjs
+
+`next.config.mjs` 是 Next.js 和 Nextra 的主配置文件。
+
+```js
+import nextra from 'nextra'
+
+const withNextra = nextra({
+  search: true,           // 启用搜索功能
+  defaultShowCopyCode: true, // 默认显示代码复制按钮
+})
+
+export default withNextra({
+  output: 'export',       // 静态导出
+})
+```
+
+## 导航配置
+
+在每个目录下创建 `_meta.ts` 文件来配置导航结构。
+
+```ts
+import type { MetaRecord } from 'nextra'
+
+const meta: MetaRecord = {
+  index: '简介',
+  'getting-started': '快速入门',
+  configuration: '配置',
+}
+
+export default meta
+```
+
+## 布局配置
+
+在 `src/app/layout.tsx` 中可以自定义站点的外观和行为：
+
+- **Navbar** — 顶部导航栏，配置 Logo 和项目链接
+- **Footer** — 底部页脚
+- **docsRepositoryBase** — "编辑此页" 链接的仓库地址
+
+<Callout type="tip">
+  修改 `src/app/layout.tsx` 中的 `Navbar` 组件来自定义您的 Logo 和导航。
+</Callout>
+
+## 主题配置
+
+Nextra 内置了亮色和深色两种主题，可通过右上角的主题切换按钮进行切换。

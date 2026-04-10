@@ -1,0 +1,77 @@
+---
+title: 快速入门
+description: 在几分钟内启动并运行 ENU Website
+---
+
+import { Steps, Callout } from 'nextra/components'
+
+# 快速入门
+
+本指南将帮助您在本地快速启动 ENU Website。
+
+## 前提条件
+
+- [Node.js](https://nodejs.org) 18.0 或更高版本
+- [npm](https://www.npmjs.com) 或 [yarn](https://yarnpkg.com) 或 [pnpm](https://pnpm.io)
+
+## 安装步骤
+
+<Steps>
+
+### 克隆仓库
+
+```bash
+git clone https://github.com/xgenya/enu-website.git
+cd enu-website
+```
+
+### 安装依赖
+
+```bash
+npm install
+```
+
+### 启动开发服务器
+
+```bash
+npm run dev
+```
+
+### 访问站点
+
+在浏览器中打开 [http://localhost:3000](http://localhost:3000) 即可查看站点。
+
+</Steps>
+
+## 构建生产版本
+
+```bash
+npm run build
+npm run start
+```
+
+<Callout type="info">
+  构建完成后，站点将生成在 `out/` 目录中（静态导出模式）。
+</Callout>
+
+## 项目结构
+
+```
+enu-website/
+├── content/          # 文档内容（MDX 文件）
+│   ├── _meta.ts      # 导航配置
+│   ├── index.mdx     # 首页
+│   └── docs/         # 文档目录
+│       ├── _meta.ts
+│       ├── index.mdx
+│       └── getting-started.mdx
+├── src/
+│   ├── app/          # Next.js App Router
+│   │   ├── layout.tsx
+│   │   └── [[...mdxPath]]/
+│   │       └── page.tsx
+│   └── mdx-components.tsx
+├── next.config.mjs
+├── package.json
+└── tsconfig.json
+```
