@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import styles from './home.module.css'
@@ -240,14 +241,73 @@ export default function MCHomePage() {
 
         {/* Spec cards */}
         <div className={styles.hardwareGrid}>
-          {[
-            { label: '处理器', value: 'AMD EPYC™', sub: '高性能多核处理器', icon: '⚙️' },
-            { label: '内存', value: '16 GB', sub: 'DDR5 高速内存', icon: '🧠' },
-            { label: '存储', value: 'SSD', sub: '低延迟固态存储', icon: '💾' },
-            { label: '网络', value: '100 Mbps', sub: '低延迟稳定专线', icon: '🌐' },
-            { label: '服务端', value: 'Paper', sub: '高性能 Minecraft 核心', icon: '📦' },
-            { label: '版本', value: '1.21.1', sub: 'Java Edition', icon: '🎮' },
-          ].map((item) => (
+          {([
+            {
+              label: '处理器', value: 'AMD EPYC™', sub: '高性能多核处理器',
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="4" y="4" width="16" height="16" rx="2"/>
+                  <rect x="8" y="8" width="8" height="8" rx="1"/>
+                  <path d="M12 2v2M17 2v2M7 2v2"/>
+                  <path d="M12 20v2M17 20v2M7 20v2"/>
+                  <path d="M2 12h2M2 17h2M2 7h2"/>
+                  <path d="M20 12h2M20 17h2M20 7h2"/>
+                </svg>
+              ),
+            },
+            {
+              label: '内存', value: '16 GB', sub: 'DDR5 高速内存',
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="8" width="20" height="10" rx="2"/>
+                  <path d="M6 8V6M10 8V6M14 8V6M18 8V6"/>
+                  <path d="M6 18v1M10 18v1M14 18v1M18 18v1"/>
+                  <path d="M6 13h.01M10 13h.01M14 13h.01M18 13h.01"/>
+                </svg>
+              ),
+            },
+            {
+              label: '存储', value: 'SSD', sub: '低延迟固态存储',
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="6" width="20" height="12" rx="2"/>
+                  <circle cx="17" cy="12" r="2"/>
+                  <path d="M2 12h10M6 9h4M6 15h4"/>
+                </svg>
+              ),
+            },
+            {
+              label: '网络', value: '100 Mbps', sub: '低延迟稳定专线',
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 19h.01"/>
+                  <path d="M8.5 16.5a5 5 0 0 1 7 0"/>
+                  <path d="M5 13a9 9 0 0 1 14 0"/>
+                  <path d="M2 9.5a13 13 0 0 1 20 0"/>
+                </svg>
+              ),
+            },
+            {
+              label: '服务端', value: 'Fabric', sub: '高性能 Minecraft 核心',
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                  <path d="M2 17l10 5 10-5"/>
+                  <path d="M2 12l10 5 10-5"/>
+                </svg>
+              ),
+            },
+            {
+              label: '版本', value: '1.21.11', sub: 'Java Edition',
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2"/>
+                  <path d="M8 21h8M12 17v4"/>
+                  <path d="M7 8l3 3-3 3M13 14h4"/>
+                </svg>
+              ),
+            },
+          ] as { label: string; value: string; sub: string; icon: React.ReactNode }[]).map((item) => (
             <div key={item.label} className={styles.hwCard}>
               <div className={styles.hwCardIcon}>{item.icon}</div>
               <div className={styles.hwCardBody}>
