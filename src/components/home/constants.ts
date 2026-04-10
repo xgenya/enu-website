@@ -49,8 +49,8 @@ export const TYPING_PHRASES = [
 
 export const TEAM_MEMBERS = [
   {
-    username: 'zhang',
-    name: 'zhang',
+    username: 'zhang1322',
+    name: 'zhang1322',
     role: '服务器创始人',
     tag: 'FOUNDER',
     color: '#f0c060',
