@@ -269,6 +269,7 @@ export default function GettingStartedPage() {
         <Link href="/" className={styles.navLogo}>ENU</Link>
         <ul className={styles.navLinks}>
           <li><Link href="/docs" className={styles.navLink}>文档</Link></li>
+          <li><Link href="/about" className={styles.navLink}>关于</Link></li>
           <li><Link href="/getting-started" className={styles.navLink}>快速开始</Link></li>
         </ul>
       </nav>
