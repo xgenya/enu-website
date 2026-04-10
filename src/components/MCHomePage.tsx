@@ -62,6 +62,42 @@ function useStaggerReveal(itemCount: number) {
   return { containerRef, visibleItems }
 }
 
+function useCountUp(target: number, duration = 1000) {
+  const [value, setValue] = useState(0)
+  const prevTarget = useRef(0)
+
+  useEffect(() => {
+    if (target === prevTarget.current) return
+    const start = prevTarget.current
+    const diff = target - start
+    const startTime = performance.now()
+
+    const animate = (now: number) => {
+      const elapsed = now - startTime
+      const progress = Math.min(elapsed / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setValue(Math.round(start + diff * eased))
+
+      if (progress < 1) {
+        requestAnimationFrame(animate)
+      } else {
+        prevTarget.current = target
+      }
+    }
+
+    requestAnimationFrame(animate)
+  }, [target, duration])
+
+  return value
+}
+
+type ServerStatus = {
+  online: boolean
+  players: number
+  maxPlayers: number
+  pingMs?: number
+}
+
 const FEATURES = [
   {
     icon: '/images/mc-icons/redstone_block.png',
@@ -418,19 +454,54 @@ function useHeroTyping() {
   return { displayed, phase }
 }
 
+function AnimatedNumber({ value, suffix = '' }: { value: number; suffix?: string }) {
+  const animated = useCountUp(value)
+  return <>{animated}{suffix}</>
+}
+
+function SignalBars({ ping }: { ping?: number }) {
+  if (!ping) return null
+  const ms = Math.round(ping)
+  const bars = ms < 80 ? 4 : ms < 150 ? 3 : ms < 250 ? 2 : 1
+  
+  return (
+    <div className={styles.signalWrap} title={`${ms}ms`}>
+      <div className={styles.signalBars}>
+        {[1, 2, 3, 4].map((i) => (
+          <span
+            key={i}
+            className={`${styles.signalBar} ${i <= bars ? styles.signalBarActive : ''}`}
+            style={{ height: `${i * 3 + 2}px` }}
+          />
+        ))}
+      </div>
+      <span className={styles.signalTooltip}>{ms}ms</span>
+    </div>
+  )
+}
+
 export default function MCHomePage() {
-  const [players, setPlayers] = useState<string>('--')
-  const [serverOnline, setServerOnline] = useState(true)
+  const [survival, setSurvival] = useState<ServerStatus>({ online: false, players: 0, maxPlayers: 0 })
+  const [creative, setCreative] = useState<ServerStatus>({ online: false, players: 0, maxPlayers: 0 })
+  const [loaded, setLoaded] = useState(false)
   const { displayed, phase } = useHeroTyping()
+
+  const anyOnline = survival.online || creative.online
+  const avgPing = Math.round(((survival.pingMs ?? 0) + (creative.pingMs ?? 0)) / (survival.online && creative.online ? 2 : 1))
+  
+  const startDate = new Date('2026-03-12')
+  const today = new Date()
+  const daysRunning = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24))
 
   useEffect(() => {
     fetch('/api/server-status')
       .then((r) => r.json())
       .then((d) => {
-        setPlayers(String(d.players))
-        setServerOnline(d.online)
+        setSurvival(d.survival ?? { online: false, players: 0, maxPlayers: 0 })
+        setCreative(d.creative ?? { online: false, players: 0, maxPlayers: 0 })
+        setLoaded(true)
       })
-      .catch(() => {})
+      .catch(() => setLoaded(true))
   }, [])
   return (
     <div className={styles.container}>
@@ -465,8 +536,11 @@ export default function MCHomePage() {
         </div>
 
         <div className={styles.systemStatus}>
-          <span className={styles.statusDot} style={{ background: serverOnline ? undefined : '#e05555' }} />
-          {serverOnline ? 'SERVER ONLINE' : 'SERVER OFFLINE'}
+          <span className={styles.statusDot} style={{ background: anyOnline ? undefined : '#e05555' }} />
+          {anyOnline ? 'SERVER ONLINE' : 'SERVER OFFLINE'}
+          {loaded && anyOnline && avgPing > 0 && (
+            <span className={styles.pingBadge}>{avgPing}ms</span>
+          )}
         </div>
         <p className={styles.serverTag}>ENU SERVER</p>
         <h1 className={styles.heroTitle}>ENU</h1>
@@ -484,17 +558,32 @@ export default function MCHomePage() {
 
         <div className={styles.statsBar}>
           <div className={styles.statItem}>
-            <span className={styles.statValue}>{players}</span>
-            <span className={styles.statLabel}>Online Players</span>
-            <span className={styles.statLabelSub}>在线玩家</span>
+            {loaded && survival.online && <SignalBars ping={survival.pingMs} />}
+            <span className={styles.statValue}>
+              {loaded ? <AnimatedNumber value={survival.players} /> : '--'}
+            </span>
+            <span className={styles.statLabel}>Survival</span>
+            <span className={styles.statLabelSub}>生存服</span>
           </div>
           <div className={styles.statItem}>
-            <span className={styles.statValue}>2</span>
+            {loaded && creative.online && <SignalBars ping={creative.pingMs} />}
+            <span className={styles.statValue}>
+              {loaded ? <AnimatedNumber value={creative.players} /> : '--'}
+            </span>
+            <span className={styles.statLabel}>Creative</span>
+            <span className={styles.statLabelSub}>创造服</span>
+          </div>
+          <div className={styles.statItem}>
+            <span className={styles.statValue}>
+              <AnimatedNumber value={2} />
+            </span>
             <span className={styles.statLabel}>Season</span>
             <span className={styles.statLabelSub}>周目</span>
           </div>
           <div className={styles.statItem}>
-            <span className={styles.statValue}>0</span>
+            <span className={styles.statValue}>
+              <AnimatedNumber value={daysRunning} />
+            </span>
             <span className={styles.statLabel}>Days Running</span>
             <span className={styles.statLabelSub}>运行天数</span>
           </div>

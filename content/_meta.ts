@@ -13,6 +13,9 @@ const meta: MetaRecord = {
     title: '文档',
     type: 'page',
   },
+  about: {
+    display: 'hidden',
+  },
 }
 
 export default meta

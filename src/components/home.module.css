@@ -135,6 +135,17 @@
   animation: pulse 1.8s ease-in-out infinite;
 }
 
+.pingBadge {
+  margin-left: 12px;
+  padding: 2px 8px;
+  background: rgba(93, 184, 93, 0.15);
+  border: 1px solid rgba(93, 184, 93, 0.3);
+  border-radius: 3px;
+  font-size: 8px;
+  color: #8ad08a;
+  letter-spacing: 1px;
+}
+
 @keyframes pulse {
   0%, 100% { opacity: 1; box-shadow: 0 0 8px #5db85d; }
   50%       { opacity: 0.3; box-shadow: 0 0 4px #5db85d; }
@@ -227,27 +238,27 @@
 /* MC Pixel Buttons */
 .btnPrimary {
   font-family: 'Press Start 2P', monospace;
-  font-size: 11px;
-  color: #fff;
+  font-size: 13px;
+  color: #0a2a0a;
   text-decoration: none;
-  background: #4aad4a;
+  background: #5db85d;
   padding: 15px 30px;
   display: inline-block;
   letter-spacing: 1px;
   box-shadow:
-    inset -3px -5px #2a7a2a,
-    inset 3px 3px #6acd6a,
+    inset -3px -5px #3a8a3a,
+    inset 3px 3px #8ad08a,
     3px 3px 0 #000;
   transition: transform 0.08s, box-shadow 0.08s;
   cursor: pointer;
-  text-shadow: 1px 1px 0 #1a5a1a;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .btnPrimary:hover {
   transform: translate(1px, 1px);
   box-shadow:
-    inset -2px -4px #2a7a2a,
-    inset 2px 2px #6acd6a,
+    inset -2px -4px #3a8a3a,
+    inset 2px 2px #8ad08a,
     2px 2px 0 #000;
 }
 
@@ -288,9 +299,56 @@
 }
 
 .statItem {
+  position: relative;
   padding: 22px 40px;
   text-align: center;
   flex: 1;
+}
+
+.signalWrap {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+}
+
+.signalBars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+
+.signalBar {
+  width: 3px;
+  background: rgba(93, 184, 93, 0.2);
+  border-radius: 1px;
+}
+
+.signalBarActive {
+  background: #5db85d;
+  box-shadow: 0 0 4px rgba(93, 184, 93, 0.5);
+}
+
+.signalTooltip {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 8px);
+  transform: translateY(-50%);
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(93, 184, 93, 0.3);
+  border-radius: 4px;
+  font-size: 10px;
+  color: #5db85d;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.signalWrap:hover .signalTooltip {
+  opacity: 1;
 }
 
 .statItem + .statItem {
