@@ -1,0 +1,9 @@
+services:
+  enu-website:
+    image: ghcr.io/xgenya/enu-website:latest
+    container_name: enu-website
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
