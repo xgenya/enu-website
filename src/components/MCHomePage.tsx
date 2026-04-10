@@ -47,10 +47,10 @@ const PARTICLES = [
 ]
 
 const TYPING_PHRASES = [
-  '一个原版 Minecraft 服务器',
-  '红石',
-  '建筑',
-  '摸鱼',
+  '一个纯粹的原版生存服务器',
+  'A Pure Vanilla Survival Server',
+  '红石 · 建筑 · 探索',
+  'Redstone · Building · Exploration',
 ]
 
 function useHeroTyping() {
