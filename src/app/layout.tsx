@@ -5,7 +5,8 @@ import 'nextra-theme-docs/style.css'
 
 export const metadata = {
   title: {
-    template: '%s – ENU',
+    template: '%s – ENU Server',
+    default: 'ENU Server',
   },
 }
 
