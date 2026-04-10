@@ -223,6 +223,16 @@
 
 @media (max-width: 700px) {
   .teamGrid { grid-template-columns: 1fr; }
+  
+  .memberCard {
+    z-index: 1;
+    transition: z-index 0s 0.4s;
+  }
+  
+  .memberCard:hover {
+    z-index: 10;
+    transition: z-index 0s 0s;
+  }
 }
 
 .memberCard {
