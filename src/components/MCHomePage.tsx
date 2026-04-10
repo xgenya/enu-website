@@ -47,10 +47,10 @@ const PARTICLES = [
 ]
 
 const TYPING_PHRASES = [
-  '一个原版Minecraft服务器。',
-  '红石。',
-  '建筑。',
-  '摸鱼。',
+  '一个原版 Minecraft 服务器',
+  '红石',
+  '建筑',
+  '摸鱼',
 ]
 
 function useHeroTyping() {
