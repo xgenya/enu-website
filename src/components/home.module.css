@@ -55,6 +55,9 @@
 }
 
 .navLink {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   color: #9999aa;
   text-decoration: none;
   font-size: 13px;
@@ -64,6 +67,12 @@
 
 .navLink:hover {
   color: #5db85d;
+}
+
+.navIcon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
 }
 
 /* ========== HERO ========== */

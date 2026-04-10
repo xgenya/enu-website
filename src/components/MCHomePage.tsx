@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import styles from './home.module.css'
+import Navbar from './Navbar'
 import {
   useHeroTyping,
   PARTICLES,
@@ -44,15 +45,7 @@ export default function MCHomePage() {
   return (
     <div className={styles.container}>
       <SkinPeekGroup />
-
-      <nav className={styles.nav}>
-        <Link href="/" className={styles.navLogo}>ENU</Link>
-        <ul className={styles.navLinks}>
-          <li><Link href="/docs" className={styles.navLink}>文档</Link></li>
-          <li><Link href="/about" className={styles.navLink}>关于</Link></li>
-          <li><Link href="/getting-started" className={styles.navLink}>快速开始</Link></li>
-        </ul>
-      </nav>
+      <Navbar />
 
       <section className={styles.hero}>
         <div className={styles.particles} aria-hidden="true">

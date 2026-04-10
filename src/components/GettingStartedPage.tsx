@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import Link from 'next/link'
 import styles from './getting-started.module.css'
+import Navbar from './Navbar'
 
 const PARTICLES = [
   { left: '8%',  delay: '0s',   duration: '12s', size: 3 },
@@ -265,14 +265,7 @@ export default function GettingStartedPage() {
         ))}
       </div>
 
-      <nav className={styles.nav}>
-        <Link href="/" className={styles.navLogo}>ENU</Link>
-        <ul className={styles.navLinks}>
-          <li><Link href="/docs" className={styles.navLink}>文档</Link></li>
-          <li><Link href="/about" className={styles.navLink}>关于</Link></li>
-          <li><Link href="/getting-started" className={styles.navLink}>快速开始</Link></li>
-        </ul>
-      </nav>
+      <Navbar />
 
       <div className={styles.page}>
 

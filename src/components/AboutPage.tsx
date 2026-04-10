@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useRef, useEffect, useState } from 'react'
 import styles from './about.module.css'
+import Navbar from './Navbar'
 
 const PARTICLES = [
   { left: '8%',  delay: '0s',   duration: '12s', size: 3 },
@@ -17,8 +18,8 @@ const PARTICLES = [
 const TEAM = [
   {
     role: '服务器创始人',
-    name: 'zhang',
-    username: 'zhang',
+    name: 'zhang1322',
+    username: 'zhang1322',
     tag: 'FOUNDER',
     desc: '服务器的创立者与愿景的守护者，从零开始搭建起这片生电大陆，为所有玩家提供稳定、纯粹的原版生存体验。负责服务器的整体方向与长期运营决策。',
     color: '#f0c060',
@@ -167,15 +168,7 @@ export default function AboutPage() {
       <div className={styles.dotGrid} aria-hidden="true" />
       <div className={styles.vignette} aria-hidden="true" />
 
-      {/* Navbar */}
-      <nav className={styles.nav}>
-        <Link href="/" className={styles.navLogo}>ENU</Link>
-        <ul className={styles.navLinks}>
-          <li><Link href="/" className={styles.navLink}>首页</Link></li>
-          <li><Link href="/getting-started" className={styles.navLink}>快速开始</Link></li>
-          <li><Link href="/docs" className={styles.navLink}>文档</Link></li>
-        </ul>
-      </nav>
+      <Navbar />
 
       {/* Content */}
       <main className={styles.page}>

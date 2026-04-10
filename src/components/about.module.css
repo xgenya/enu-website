@@ -53,6 +53,9 @@
 }
 
 .navLink {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-size: 13px;
   color: #9999aa;
   text-decoration: none;
@@ -62,6 +65,12 @@
 
 .navLink:hover {
   color: #5db85d;
+}
+
+.navIcon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
 }
 
 /* Page content */
