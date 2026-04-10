@@ -101,7 +101,7 @@ export default function MCHomePage() {
         <p className={styles.heroDesc}>每段冒险都值得被认真对待，而你的篇章从这里翻开</p>
 
         <div className={styles.heroBtnGroup}>
-          <Link href="/docs/getting-started" className={styles.btnPrimary}>开始你的冒险</Link>
+          <Link href="/getting-started" className={styles.btnPrimary}>开始你的冒险</Link>
           <Link href="/docs" className={styles.btnSecondary}>了解更多</Link>
         </div>
 
@@ -357,7 +357,7 @@ export default function MCHomePage() {
             不需要门槛，不需要理由。进来看看，也许这里就是你一直在找的地方。
           </p>
         </div>
-        <Link href="/docs/getting-started" className={styles.btnPrimary}>开始你的冒险</Link>
+        <Link href="/getting-started" className={styles.btnPrimary}>开始你的冒险</Link>
       </section>
 
       {/* ── Footer ── */}
