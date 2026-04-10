@@ -442,6 +442,107 @@
   color: #ddeedd;
 }
 
+/* Typing demo */
+.typingDemo {
+  margin-top: 16px;
+  background: #0a0e18;
+  border: 1px solid #1e2840;
+  border-radius: 6px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 380px;
+}
+
+.typingDemoRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.typingDemoLabel {
+  font-size: 11px;
+  color: #445566;
+  width: 64px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.typingDemoField {
+  flex: 1;
+  background: #060a12;
+  border: 1px solid #1e2840;
+  border-radius: 3px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  min-height: 30px;
+}
+
+.typingDemoText {
+  font-family: monospace;
+  font-size: 13px;
+  color: #aaccaa;
+  letter-spacing: 0.5px;
+}
+
+.typingDemoTextMuted {
+  font-family: monospace;
+  font-size: 13px;
+  color: #334455;
+}
+
+.typingDemoCursor {
+  display: inline-block;
+  width: 2px;
+  height: 14px;
+  background: #5db85d;
+  margin-left: 1px;
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.typingDemoBtns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.typingDemoBtnGhost {
+  padding: 5px 14px;
+  background: transparent;
+  border: 1px solid #1e2840;
+  border-radius: 3px;
+  color: #445566;
+  font-size: 12px;
+  cursor: default;
+}
+
+.typingDemoBtnPrimary {
+  padding: 5px 14px;
+  background: rgba(93,184,93,0.08);
+  border: 1px solid rgba(93,184,93,0.2);
+  border-radius: 3px;
+  color: #4a7a4a;
+  font-size: 12px;
+  cursor: default;
+  transition: all 0.3s;
+}
+
+.typingDemoBtnReady {
+  background: rgba(93,184,93,0.2);
+  border-color: #5db85d;
+  color: #5db85d;
+  box-shadow: 0 0 10px rgba(93,184,93,0.2);
+}
+
 /* Mod cards */
 .modCards {
   margin-top: 16px;
@@ -640,3 +741,177 @@
   margin: 0;
 }
 
+
+/* Optional section (cracked - LittleSkin) */
+.optionalSection {
+  margin-top: 32px;
+  background: rgba(180, 140, 60, 0.04);
+  border: 1px solid rgba(180, 140, 60, 0.18);
+  border-radius: 8px;
+  padding: 22px 24px;
+}
+
+.optionalHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.optionalBadge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #c8a040;
+  background: rgba(180, 140, 60, 0.12);
+  border: 1px solid rgba(180, 140, 60, 0.3);
+  border-radius: 3px;
+  padding: 2px 7px;
+  flex-shrink: 0;
+}
+
+.optionalTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: #c8a040;
+  margin: 0;
+}
+
+.optionalDesc {
+  font-size: 13px;
+  color: #667788;
+  margin: 0 0 16px 0;
+  line-height: 1.6;
+}
+
+.optionalSteps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.optionalStep {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.optionalStepNum {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(180, 140, 60, 0.12);
+  border: 1px solid rgba(180, 140, 60, 0.3);
+  color: #c8a040;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.optionalStepBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.optionalStepText {
+  font-size: 13px;
+  color: #88a0a0;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Whitelist notice */
+.whitelistNotice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: rgba(93, 140, 184, 0.05);
+  border: 1px solid rgba(93, 140, 184, 0.18);
+  border-radius: 8px;
+  padding: 14px 20px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.whitelistNoticeContent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.whitelistIcon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.whitelistText {
+  font-size: 13px;
+  color: #7a9ab0;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.whitelistText strong {
+  color: #8ab8d8;
+}
+
+.whitelistBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 18px;
+  background: rgba(93, 140, 184, 0.1);
+  border: 1px solid rgba(93, 140, 184, 0.3);
+  border-radius: 6px;
+  color: #7ab0d0;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.whitelistBtn:hover {
+  background: rgba(93, 140, 184, 0.2);
+  border-color: rgba(93, 140, 184, 0.5);
+  color: #aad0ee;
+}
+
+/* Register command demo */
+.registerDemo {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #060a12;
+  border: 1px solid #1e2840;
+  border-radius: 5px;
+  padding: 10px 16px;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.registerDemoPrompt {
+  color: #445566;
+  margin-right: 4px;
+}
+
+.registerDemoCmd {
+  color: #5db85d;
+}
+
+.registerDemoArg {
+  color: #7a9ab0;
+}

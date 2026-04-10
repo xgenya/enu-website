@@ -1,9 +1,8 @@
 import type { MetaRecord } from 'nextra'
 
 const meta: MetaRecord = {
-  index: '简介',
-  'getting-started': '快速入门',
-  configuration: '配置',
+  index: '服务器简介',
+  rules: '游玩规定',
 }
 
 export default meta

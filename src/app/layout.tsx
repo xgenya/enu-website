@@ -17,7 +17,6 @@ export default async function RootLayout({
   const navbar = (
     <Navbar
       logo={<span style={{ fontWeight: 700, fontSize: '1.2rem' }}>ENU</span>}
-      projectLink="https://github.com/xgenya/enu-website"
     />
   )
 

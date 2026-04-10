@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import styles from './getting-started.module.css'
 
@@ -23,6 +23,8 @@ type Step = {
   desc: string
   link: { label: string; href: string } | null
   mods?: boolean
+  typing?: boolean
+  register?: boolean
 }
 
 const MOD_CARDS = [
@@ -53,15 +55,15 @@ const MODPACK_CARD = {
 const STEPS_OFFICIAL: Step[] = [
   {
     step: '01',
-    title: '准备 Mod（重要）',
-    desc: '加入服务器前，请确保安装以下两个地图 Mod，或直接使用推荐整合包。',
+    title: '检查 Mod',
+    desc: '加入服务器之前，请确保当前使用的整合包内有以下两个 Mod，如果没有自己的整合包，也可以使用 XPlus 原版生电优化整合包。',
     link: null,
     mods: true,
   },
   {
     step: '02',
-    title: '启动正版游戏',
-    desc: '打开 Minecraft 官方启动器，登录你的 Microsoft 账号，选择 Java 版（1.21+）启动。',
+    title: '启动游戏',
+    desc: '使用你喜欢的启动器来启动游戏。',
     link: null,
   },
   {
@@ -75,12 +77,20 @@ const STEPS_OFFICIAL: Step[] = [
     title: '填入服务器地址',
     desc: '服务器名称随意填写，地址填入上方的服务器 IP，点击完成。',
     link: null,
+    typing: true,
   },
   {
     step: '05',
     title: '加入游戏',
     desc: '双击服务器即可连接，初次进入可能需要等待几秒加载。',
     link: null,
+  },
+  {
+    step: '06',
+    title: '游戏内注册',
+    desc: '进入游戏后，根据聊天框提示，输入指令完成注册。',
+    link: null,
+    register: true,
   },
 ]
 
@@ -93,14 +103,15 @@ const STEPS_CRACKED: Step[] = [
   },
   {
     step: '02',
-    title: '添加离线账号',
-    desc: '打开启动器，选择「离线登录」或「添加账号 → 离线账号」，随意输入一个用户名。',
+    title: '检查 Mod',
+    desc: '加入服务器之前，请确保当前使用的整合包内有以下两个 Mod，如果没有自己的整合包，也可以使用 XPlus 原版生电优化整合包。',
     link: null,
+    mods: true,
   },
   {
     step: '03',
-    title: '安装 Minecraft 1.21+',
-    desc: '在启动器版本管理中下载并安装 Java 版 1.21 或以上版本，等待安装完成。',
+    title: '添加离线账号',
+    desc: '打开启动器，选择「离线登录」或「添加账号 → 离线账号」，随意输入一个用户名。',
     link: null,
   },
   {
@@ -114,8 +125,35 @@ const STEPS_CRACKED: Step[] = [
     title: '填入服务器地址',
     desc: '服务器名称随意填写，地址填入上方的服务器 IP，点击完成后双击连接。',
     link: null,
+    typing: true,
+  },
+  {
+    step: '06',
+    title: '游戏内注册',
+    desc: '进入游戏后，根据聊天框提示，输入指令完成注册。',
+    link: null,
+    register: true,
   },
 ]
+
+const CRACKED_OPTIONAL = {
+  title: '可选：显示皮肤（LittleSkin）',
+  desc: '如果希望在服务器中显示自定义皮肤，可按以下步骤配置 LittleSkin。',
+  steps: [
+    {
+      text: '前往 LittleSkin 官网，按要求注册并绑定账号。注册完成后点击「添加角色」，输入步骤 03 中填写的用户名。',
+      link: { label: '前往 LittleSkin', href: 'https://littleskin.cn/' },
+    },
+    {
+      text: '打开 PCL2，进入对应版本的「版本设置」，将登录方式改为「第三方登录 Authlib Injector」或「LittleSkin」。',
+      link: null,
+    },
+    {
+      text: '认证服务器填写 https://littleskin.cn/api/yggdrasil，注册链接填写 https://littleskin.cn/auth/register，最后点击「设置为 LittleSkin」。',
+      link: null,
+    },
+  ],
+}
 
 const RED_LINES = [
   '严禁尝试和其他玩家进行私下交易，谨防电信诈骗！',
@@ -139,6 +177,60 @@ const BASICS = [
 ]
 
 const SERVER_IP = 'eunoia.ink'
+
+function TypingDemo() {
+  const [displayed, setDisplayed] = useState('')
+  const [phase, setPhase] = useState<'typing' | 'done' | 'pause'>('pause')
+  const ref = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    // start after 600ms delay
+    ref.current = setTimeout(() => setPhase('typing'), 600)
+    return () => { if (ref.current) clearTimeout(ref.current) }
+  }, [])
+
+  useEffect(() => {
+    if (phase === 'typing') {
+      if (displayed.length < SERVER_IP.length) {
+        ref.current = setTimeout(() => {
+          setDisplayed(SERVER_IP.slice(0, displayed.length + 1))
+        }, 90)
+      } else {
+        setPhase('done')
+      }
+    }
+    if (phase === 'done') {
+      // restart after 3s
+      ref.current = setTimeout(() => {
+        setDisplayed('')
+        setPhase('typing')
+      }, 3000)
+    }
+    return () => { if (ref.current) clearTimeout(ref.current) }
+  }, [phase, displayed])
+
+  return (
+    <div className={styles.typingDemo}>
+      <div className={styles.typingDemoRow}>
+        <span className={styles.typingDemoLabel}>服务器名称</span>
+        <div className={styles.typingDemoField}>
+          <span className={styles.typingDemoTextMuted}>ENU</span>
+        </div>
+      </div>
+      <div className={styles.typingDemoRow}>
+        <span className={styles.typingDemoLabel}>服务器地址</span>
+        <div className={styles.typingDemoField}>
+          <span className={styles.typingDemoText}>{displayed}</span>
+          <span className={styles.typingDemoCursor} />
+        </div>
+      </div>
+      <div className={styles.typingDemoBtns}>
+        <button className={styles.typingDemoBtnGhost}>取消</button>
+        <button className={`${styles.typingDemoBtnPrimary} ${phase === 'done' ? styles.typingDemoBtnReady : ''}`}>完成</button>
+      </div>
+    </div>
+  )
+}
 
 export default function GettingStartedPage() {
   const [tab, setTab] = useState<'official' | 'cracked'>('official')
@@ -232,7 +324,23 @@ export default function GettingStartedPage() {
           </div>
         </div>
 
-        {/* Tab selector */}
+        {/* Whitelist notice */}
+        <div className={styles.whitelistNotice}>
+          <div className={styles.whitelistNoticeContent}>
+            <span className={styles.whitelistIcon}>🔒</span>
+            <div>
+              <p className={styles.whitelistText}>本服务器为<strong>白名单制度</strong>，需要加入 QQ 群并在群内申请白名单资格后方可进入。</p>
+            </div>
+          </div>
+          <a
+            href="https://qun.qq.com/universal-share/share?ac=1&authKey=LXv0cr308KBlKU5e6oAMEXVSLqhdh0CmwjIY6DgxMqwaiW%2FdvIe7IBMzB%2BYB2kB2&busi_data=eyJncm91cENvZGUiOiI3MzQ4NTg1ODEiLCJ0b2tlbiI6InFXNC95MGRaRnVWZVFBSDVxOWhVY2tIV0JTb05DdXhsK3hNb3BXSmdNYUZXVC9HODVRMllkR25nOGhzMnlVaDEiLCJ1aW4iOiIxNDE4MDM0NTMxIn0%3D&data=EAUoW0ls7v5Yo0ZCCJ1FU7Qqeo-WPok4WQnDSN45vJ60cXUr8LeMncPz1A1h8tfeXaz63VLIRqWUTx4nbctQjA&svctype=4&tempid=h5_group_info"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.whitelistBtn}
+          >
+            <span>💬</span> 加入 QQ 群
+          </a>
+        </div>
         <div className={styles.tabs}>
           <button
             className={`${styles.tab} ${tab === 'official' ? styles.tabActive : ''}`}
@@ -266,7 +374,6 @@ export default function GettingStartedPage() {
                   )}
                   {'mods' in s && s.mods && (
                     <div className={styles.modCards}>
-                      <p className={styles.modCardsLabel}>单独安装（选其一或全装）</p>
                       <div className={styles.modCardRow}>
                         {MOD_CARDS.map((mod) => (
                           <a key={mod.href} href={mod.href} target="_blank" rel="noopener noreferrer" className={styles.modCard}>
@@ -290,10 +397,43 @@ export default function GettingStartedPage() {
                       </a>
                     </div>
                   )}
+                  {'typing' in s && s.typing && <TypingDemo />}
+                  {'register' in s && s.register && (
+                    <div className={styles.registerDemo}>
+                      <span className={styles.registerDemoPrompt}>&gt;</span>
+                      <span className={styles.registerDemoCmd}>/register</span>
+                      <span className={styles.registerDemoArg}> &lt;密码&gt;</span>
+                      <span className={styles.registerDemoArg}> &lt;确认密码&gt;</span>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
           </div>
+          {tab === 'cracked' && (
+            <div className={styles.optionalSection}>
+              <div className={styles.optionalHeader}>
+                <span className={styles.optionalBadge}>可选</span>
+                <h3 className={styles.optionalTitle}>{CRACKED_OPTIONAL.title}</h3>
+              </div>
+              <p className={styles.optionalDesc}>{CRACKED_OPTIONAL.desc}</p>
+              <ol className={styles.optionalSteps}>
+                {CRACKED_OPTIONAL.steps.map((s, i) => (
+                  <li key={i} className={styles.optionalStep}>
+                    <span className={styles.optionalStepNum}>{i + 1}</span>
+                    <div className={styles.optionalStepBody}>
+                      <p className={styles.optionalStepText}>{s.text}</p>
+                      {s.link && (
+                        <a href={s.link.href} target="_blank" rel="noopener noreferrer" className={styles.stepLink}>
+                          {s.link.label} →
+                        </a>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
         </section>
 
         {/* Rules */}
