@@ -1,7 +1,6 @@
 'use client'
 
-import React from 'react'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import styles from './home.module.css'
 
@@ -47,9 +46,62 @@ const PARTICLES = [
   { left: '72%', delay: '6s',   duration: '8s',  size: 2 },
 ]
 
+const TYPING_PHRASES = [
+  '一个原版Minecraft服务器。',
+  '红石。',
+  '建筑。',
+  '摸鱼。',
+]
+
+function useHeroTyping() {
+  const [displayed, setDisplayed] = useState('')
+  const [phraseIdx, setPhraseIdx] = useState(0)
+  const [charIdx, setCharIdx] = useState(0)
+  const [phase, setPhase] = useState<'typing' | 'pause' | 'erasing'>('typing')
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    const phrase = TYPING_PHRASES[phraseIdx]
+
+    const schedule = (fn: () => void, delay: number) => {
+      timer.current = setTimeout(fn, delay)
+    }
+
+    if (phase === 'typing') {
+      if (charIdx < phrase.length) {
+        schedule(() => {
+          setDisplayed(phrase.slice(0, charIdx + 1))
+          setCharIdx((c) => c + 1)
+        }, 80)
+      } else {
+        schedule(() => setPhase('pause'), 1800)
+      }
+    } else if (phase === 'pause') {
+      schedule(() => setPhase('erasing'), 0)
+    } else {
+      if (charIdx > 0) {
+        schedule(() => {
+          setDisplayed(phrase.slice(0, charIdx - 1))
+          setCharIdx((c) => c - 1)
+        }, 40)
+      } else {
+        schedule(() => {
+          setPhraseIdx((i) => (i + 1) % TYPING_PHRASES.length)
+          setPhase('typing')
+        }, 300)
+      }
+    }
+
+    return () => { if (timer.current) clearTimeout(timer.current) }
+  }, [phase, charIdx, phraseIdx])
+
+  return { displayed, phase }
+}
+
 export default function MCHomePage() {
   const [players, setPlayers] = useState<string>('--')
   const [serverOnline, setServerOnline] = useState(true)
+  const { displayed, phase } = useHeroTyping()
 
   useEffect(() => {
     fetch('/api/server-status')
@@ -98,6 +150,10 @@ export default function MCHomePage() {
         </div>
         <p className={styles.serverTag}>ENU SERVER</p>
         <h1 className={styles.heroTitle}>ENU</h1>
+        <div className={styles.heroTyping} aria-live="polite">
+          <span className={styles.heroTypingText}>{displayed}</span>
+          <span className={`${styles.heroTypingCursor} ${phase === 'pause' ? styles.heroTypingCursorBlink : ''}`} aria-hidden="true" />
+        </div>
         <p className={styles.heroSubtitle}>给热爱方块的人，一个落脚的地方</p>
         <p className={styles.heroDesc}>每段冒险都值得被认真对待，而你的篇章从这里翻开</p>
 
