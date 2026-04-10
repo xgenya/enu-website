@@ -4,10 +4,7 @@ import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
 
 export const metadata = {
-  title: {
-    template: '%s – ENU Server',
-    default: 'ENU Server',
-  },
+  title: 'ENU Server',
 }
 
 export default async function RootLayout({
