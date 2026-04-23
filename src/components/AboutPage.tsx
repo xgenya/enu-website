@@ -15,32 +15,27 @@ const PARTICLES = [
   { left: '90%', delay: '0.8s', duration: '15s', size: 3 },
 ]
 
-const TEAM = [
-  {
-    role: '服务器创始人',
-    name: 'zhang1322',
-    username: 'zhang1322',
-    tag: 'FOUNDER',
-    desc: '服务器的创立者与愿景的守护者，从零开始搭建起这片生电大陆，为所有玩家提供稳定、纯粹的原版生存体验。负责服务器的整体方向与长期运营决策。',
-    color: '#f0c060',
-  },
-  {
-    role: '核心管理',
-    name: 'sixihappy',
-    username: 'sixihappy',
-    tag: 'ADMIN',
-    desc: '服务器的核心管理员，维护社区秩序、处理玩家事务，确保每一位成员都能在公平友善的环境中游玩。同时负责白名单审核与群内事务协调。',
-    color: '#5db85d',
-  },
-  {
-    role: '开发团队',
-    name: 'remrinya',
-    username: 'remrinya',
-    tag: 'DEV',
-    desc: '负责服务器网站与技术基础设施的开发与维护，包括本站的构建部署与持续迭代。以代码为砖瓦，为玩家社区打造更好的数字体验。',
-    color: '#7090e0',
-  },
-]
+import teamConfig from '../../config/team'
+
+const CORE_MEMBERS = teamConfig.coreMembers
+const TEAM = teamConfig.team
+
+function CoreMemberCard({ username, name, color }: { username: string; name: string; color: string }) {
+  return (
+    <div className={styles.coreMemberCard} style={{ '--member-color': color } as React.CSSProperties}>
+      <div className={styles.coreMemberContent}>
+        <img
+          src={`https://mc-heads.net/avatar/${username}/48`}
+          alt={username}
+          width={48}
+          height={48}
+          className={styles.coreMcAvatar}
+        />
+        <div className={styles.coreMemberName}>{name}</div>
+      </div>
+    </div>
+  )
+}
 
 function McAvatar({ username, color }: { username: string; color: string }) {
   return (
@@ -201,6 +196,16 @@ export default function AboutPage() {
           <div className={styles.teamGrid}>
             {TEAM.map((member) => (
               <MemberCard key={member.name} member={member} />
+            ))}
+          </div>
+        </section>
+
+        {/* Core Members */}
+        <section className={styles.teamSection}>
+          <h2 className={styles.teamHeading}>核心成员</h2>
+          <div className={styles.coreMemberGrid}>
+            {CORE_MEMBERS.map((member) => (
+              <CoreMemberCard key={member.username} {...member} />
             ))}
           </div>
         </section>

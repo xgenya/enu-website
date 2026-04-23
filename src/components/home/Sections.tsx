@@ -4,6 +4,9 @@ import Link from 'next/link'
 import styles from '../home.module.css'
 import { useScrollReveal, useStaggerReveal } from './hooks'
 import { FEATURES, GALLERY } from './constants'
+import homeConfig from '../../../config/home'
+
+const { whyEnu, gallery: galleryCopy, cta, infrastructure: _infrastructure } = homeConfig.sections
 
 export function WhyEnuSection() {
   const header = useScrollReveal()
@@ -15,11 +18,9 @@ export function WhyEnuSection() {
         ref={header.ref}
         className={`${styles.sectionHeader} ${styles.reveal} ${header.isVisible ? styles.revealVisible : ''}`}
       >
-        <span className={styles.sectionEyebrow}>WHY ENU</span>
-        <h2 className={styles.sectionTitle}>在这里<em>安心生存</em></h2>
-        <p className={styles.sectionSubtitle}>
-          用心打磨每一个细节，只为让你在方块世界里，找到一份踏实与安心。
-        </p>
+        <span className={styles.sectionEyebrow}>{whyEnu.eyebrow}</span>
+        <h2 className={styles.sectionTitle}>{whyEnu.title}<em>{whyEnu.titleEm}</em></h2>
+        <p className={styles.sectionSubtitle}>{whyEnu.subtitle}</p>
       </div>
       <div ref={containerRef} className={styles.featuresGrid}>
         {FEATURES.map((f, i) => (
@@ -49,11 +50,9 @@ export function GallerySection() {
             ref={header.ref}
             className={`${styles.sectionHeader} ${styles.reveal} ${header.isVisible ? styles.revealVisible : ''}`}
           >
-            <span className={styles.sectionEyebrow}>GALLERY</span>
-            <h2 className={styles.sectionTitle}>留住<em>每一帧</em></h2>
-            <p className={styles.sectionSubtitle}>
-              一座拔地而起的城堡，一场日落时分的偶遇。这些由玩家亲手创造的瞬间，是服务器里最真实的风景
-            </p>
+            <span className={styles.sectionEyebrow}>{galleryCopy.eyebrow}</span>
+            <h2 className={styles.sectionTitle}>{galleryCopy.title}<em>{galleryCopy.titleEm}</em></h2>
+            <p className={styles.sectionSubtitle}>{galleryCopy.subtitle}</p>
           </div>
           <div ref={containerRef} className={styles.galleryGrid}>
             {GALLERY.map((item, i) => (
@@ -80,13 +79,11 @@ export function CtaSection() {
       className={`${styles.ctaSection} ${styles.reveal} ${reveal.isVisible ? styles.revealVisible : ''}`}
     >
       <div className={styles.sectionHeader}>
-        <span className={styles.sectionEyebrow}>JOIN US</span>
-        <h2 className={styles.sectionTitle}>找到<em>你的位置</em></h2>
-        <p className={styles.sectionSubtitle}>
-          不需要门槛，不需要理由。进来看看，也许这里就是你一直在找的地方。
-        </p>
+        <span className={styles.sectionEyebrow}>{cta.eyebrow}</span>
+        <h2 className={styles.sectionTitle}>{cta.title}<em>{cta.titleEm}</em></h2>
+        <p className={styles.sectionSubtitle}>{cta.subtitle}</p>
       </div>
-      <Link href="/getting-started" className={styles.btnPrimary}>开始你的冒险</Link>
+      <Link href={cta.btnHref} className={styles.btnPrimary}>{cta.btnLabel}</Link>
     </section>
   )
 }

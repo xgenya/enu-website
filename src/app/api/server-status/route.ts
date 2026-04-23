@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server'
 import { fetchServerInfo } from 'minestat-es'
+import homeConfig from '../../../../config/home'
 
 export const revalidate = 60
 
-const SERVERS = {
-  survival: { host: 'eunoia.ink', port: 24871 },
-  creative: { host: 'eunoia.ink', port: 25565 },
-}
+const SERVERS = Object.fromEntries(
+  homeConfig.servers.map(s => [s.id, { host: s.host, port: s.port }])
+)
 
 async function queryServer(host: string, port: number, full = false) {
   try {
@@ -33,37 +33,24 @@ async function queryServer(host: string, port: number, full = false) {
   }
 }
 
-export async function GET_FULL(request: Request) {
-  const { searchParams } = new URL(request.url)
-  const server = searchParams.get('server') as keyof typeof SERVERS | null
-  
-  if (server && server in SERVERS) {
-    const { host, port } = SERVERS[server]
-    const status = await queryServer(host, port, true)
-    return NextResponse.json(status)
-  }
-  return NextResponse.json({ error: 'specify ?server=survival or ?server=creative' })
-}
-
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
-  const server = searchParams.get('server')
+  const serverId = searchParams.get('server')
 
-  if (server && server in SERVERS) {
-    const { host, port } = SERVERS[server as keyof typeof SERVERS]
+  if (serverId && serverId in SERVERS) {
+    const { host, port } = SERVERS[serverId]
     const status = await queryServer(host, port)
     return NextResponse.json(status)
   }
 
-  const [survival, creative] = await Promise.all([
-    queryServer(SERVERS.survival.host, SERVERS.survival.port),
-    queryServer(SERVERS.creative.host, SERVERS.creative.port),
-  ])
+  const results = await Promise.all(
+    homeConfig.servers.map(s =>
+      queryServer(s.host, s.port).then(status => [s.id, status] as const)
+    )
+  )
+  const statusMap = Object.fromEntries(results)
+  const totalPlayers = Object.values(statusMap).reduce((sum, s) => sum + (s.players ?? 0), 0)
+  const anyOnline = Object.values(statusMap).some(s => s.online)
 
-  return NextResponse.json({
-    survival,
-    creative,
-    totalPlayers: (survival.players ?? 0) + (creative.players ?? 0),
-    anyOnline: survival.online || creative.online,
-  })
+  return NextResponse.json({ ...statusMap, totalPlayers, anyOnline })
 }
