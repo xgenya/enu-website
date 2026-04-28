@@ -12,7 +12,7 @@ import {
   ServerStatus,
   SkinPeekGroup,
   HardwareSection,
-  WhyEnuSection,
+  WhyEunSection,
   GallerySection,
   CtaSection,
   AnimatedNumber,
@@ -72,8 +72,8 @@ export default function MCHomePage() {
             <span className={styles.pingBadge}>{avgPing}ms</span>
           )}
         </div>
-        <p className={styles.serverTag}>ENU SERVER</p>
-        <h1 className={styles.heroTitle}>ENU</h1>
+        <p className={styles.serverTag}>EUN SERVER</p>
+        <h1 className={styles.heroTitle}>EUN</h1>
         <div className={styles.heroTyping} aria-live="polite">
           <span className={styles.heroTypingText}>{displayed}</span>
           <span className={`${styles.heroTypingCursor} ${phase === 'pause' ? styles.heroTypingCursorBlink : ''}`} aria-hidden="true" />
@@ -128,7 +128,7 @@ export default function MCHomePage() {
       <div className={styles.grassDivider} aria-hidden="true" />
       <div className={styles.dirtDivider} aria-hidden="true" />
 
-      <WhyEnuSection />
+      <WhyEunSection />
 
       <div className={styles.dirtDivider} aria-hidden="true" />
       <div className={styles.grassDivider} aria-hidden="true" />
@@ -146,8 +146,8 @@ export default function MCHomePage() {
       <CtaSection />
 
       <footer className={styles.footer}>
-        <span className={styles.footerLogo}>ENU</span>
-        <p className={styles.footerText}>© 2026 ENU Server · All rights reserved</p>
+        <span className={styles.footerLogo}>EUN</span>
+        <p className={styles.footerText}>© 2026 EUN Server · All rights reserved</p>
       </footer>
     </div>
   )

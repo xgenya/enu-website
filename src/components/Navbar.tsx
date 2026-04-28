@@ -52,7 +52,7 @@ export default function Navbar() {
 
   return (
     <nav className={styles.nav}>
-      <Link href="/" className={styles.navLogo}>ENU</Link>
+      <Link href="/" className={styles.navLogo}>EUN</Link>
       <ul className={styles.navLinks}>
         {!isHome && (
           <li>

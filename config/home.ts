@@ -27,7 +27,7 @@ const home = {
     },
   ],
 
-  // 服务器特性卡片（Why ENU 区块）
+  // 服务器特性卡片（Why EUN 区块）
   features: [
     {
       icon: '/images/mc-icons/redstone_block.png',
@@ -60,8 +60,8 @@ const home = {
 
   // 各区块的文案配置
   sections: {
-    whyEnu: {
-      eyebrow: 'WHY ENU',
+    whyEun: {
+      eyebrow: 'WHY EUN',
       title: '在这里',
       titleEm: '安心生存',
       subtitle: '用心打磨每一个细节，只为让你在方块世界里，找到一份踏实与安心。',

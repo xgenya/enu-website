@@ -4,7 +4,7 @@ import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
 
 export const metadata = {
-  title: 'ENU Server',
+  title: 'EUN Server',
 }
 
 export default async function RootLayout({
@@ -14,11 +14,11 @@ export default async function RootLayout({
 }) {
   const navbar = (
     <Navbar
-      logo={<span style={{ fontWeight: 700, fontSize: '1.2rem' }}>ENU</span>}
+      logo={<span style={{ fontWeight: 700, fontSize: '1.2rem' }}>EUN</span>}
     />
   )
 
-  const footer = <Footer>MIT {new Date().getFullYear()} © ENU Website.</Footer>
+  const footer = <Footer>MIT {new Date().getFullYear()} © EUN Website.</Footer>
 
   return (
     <html lang="zh" dir="ltr" suppressHydrationWarning>
@@ -28,7 +28,7 @@ export default async function RootLayout({
           navbar={navbar}
           footer={footer}
           editLink="Edit this page on GitHub"
-          docsRepositoryBase="https://github.com/xgenya/enu-website/blob/main"
+          docsRepositoryBase="https://github.com/xgenya/eun-website/blob/main"
           pageMap={await getPageMap()}
           lastUpdated={<LastUpdated />}
           nextThemes={{ defaultTheme: 'dark', forcedTheme: 'dark' }}

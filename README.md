@@ -1,8 +1,8 @@
 <div align="center">
 
-# ENU Website
+# EUN Website
 
-**ENU Minecraft 服务器官网**
+**EUN Minecraft 服务器官网**
 
 基于 Next.js + Nextra 构建的 MC 风格服务器官网，包含首页、快速开始指南与文档站。
 
@@ -13,7 +13,7 @@
 [![Docker](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 [![License](https://img.shields.io/badge/License-GPL--3.0-green)](LICENSE)
 
-🔗 **预览：[enu.remrin.dev](https://enu.remrin.dev)**
+🔗 **预览：[eun.remrin.dev](https://eun.remrin.dev)**
 
 </div>
 
@@ -57,8 +57,8 @@
 ### 本地开发
 
 ```bash
-git clone https://github.com/xgenya/enu-website.git
-cd enu-website
+git clone https://github.com/xgenya/eun-website.git
+cd eun-website
 npm install
 npm run dev
 ```
@@ -74,7 +74,7 @@ npm run dev
 
 ```bash
 # 下载 docker-compose.yml
-curl -O https://raw.githubusercontent.com/xgenya/enu-website/master/docker-compose.yml
+curl -O https://raw.githubusercontent.com/xgenya/eun-website/master/docker-compose.yml
 
 # 启动
 docker compose up -d
@@ -90,13 +90,13 @@ docker compose pull && docker compose up -d
 ### 方式二：Node.js 直接部署
 
 ```bash
-git clone https://github.com/xgenya/enu-website.git
-cd enu-website
+git clone https://github.com/xgenya/eun-website.git
+cd eun-website
 npm install && npm run build
 
 # 用 PM2 守护进程
 npm install -g pm2
-pm2 start npm --name "enu-website" -- start
+pm2 start npm --name "eun-website" -- start
 pm2 save && pm2 startup
 ```
 
@@ -109,7 +109,7 @@ pm2 save && pm2 startup
 ## 📁 项目结构
 
 ```
-enu-website/
+eun-website/
 ├── config/                    # 站点配置（TypeScript，支持注释）
 │   ├── home.ts                # 首页（含服务器列表）
 │   ├── getting-started.ts     # 快速开始
@@ -169,7 +169,7 @@ enu-website/
 
 <div align="center">
 
-Made with ❤️ for ENU Minecraft Server
+Made with ❤️ for EUN Minecraft Server
 
 </div>
 

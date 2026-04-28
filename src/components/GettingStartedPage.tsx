@@ -76,7 +76,7 @@ function TypingDemo() {
       <div className={styles.typingDemoRow}>
         <span className={styles.typingDemoLabel}>服务器名称</span>
         <div className={styles.typingDemoField}>
-          <span className={styles.typingDemoTextMuted}>ENU</span>
+          <span className={styles.typingDemoTextMuted}>EUN</span>
         </div>
       </div>
       <div className={styles.typingDemoRow}>
@@ -134,7 +134,7 @@ export default function GettingStartedPage() {
         {/* Hero */}
         <div className={styles.hero}>
           <span className={styles.eyebrow}>GETTING STARTED</span>
-          <h1 className={styles.title}>加入 ENU</h1>
+          <h1 className={styles.title}>加入 EUN</h1>
           <p className={styles.subtitle}>选择你的游戏方式，按步骤加入服务器</p>
         </div>
 
@@ -349,8 +349,8 @@ export default function GettingStartedPage() {
       </div>
 
       <footer className={styles.footer}>
-        <span className={styles.footerLogo}>ENU</span>
-        <p className={styles.footerText}>© 2026 ENU Server · All rights reserved</p>
+        <span className={styles.footerLogo}>EUN</span>
+        <p className={styles.footerText}>© 2026 EUN Server · All rights reserved</p>
       </footer>
     </div>
   )

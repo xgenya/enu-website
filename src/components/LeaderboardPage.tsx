@@ -262,8 +262,8 @@ export default function LeaderboardPage() {
       </main>
 
       <footer className={styles.footer}>
-        <span className={styles.footerLogo}>ENU</span>
-        <p className={styles.footerText}>© 2026 ENU Server · All rights reserved</p>
+        <span className={styles.footerLogo}>EUN</span>
+        <p className={styles.footerText}>© 2026 EUN Server · All rights reserved</p>
       </footer>
     </div>
   )

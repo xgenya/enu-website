@@ -6,9 +6,9 @@ import { useScrollReveal, useStaggerReveal } from './hooks'
 import { FEATURES, GALLERY } from './constants'
 import homeConfig from '../../../config/home'
 
-const { whyEnu, gallery: galleryCopy, cta, infrastructure: _infrastructure } = homeConfig.sections
+const { whyEun, gallery: galleryCopy, cta, infrastructure: _infrastructure } = homeConfig.sections
 
-export function WhyEnuSection() {
+export function WhyEunSection() {
   const header = useScrollReveal()
   const { containerRef, visibleItems } = useStaggerReveal(FEATURES.length)
 
@@ -18,9 +18,9 @@ export function WhyEnuSection() {
         ref={header.ref}
         className={`${styles.sectionHeader} ${styles.reveal} ${header.isVisible ? styles.revealVisible : ''}`}
       >
-        <span className={styles.sectionEyebrow}>{whyEnu.eyebrow}</span>
-        <h2 className={styles.sectionTitle}>{whyEnu.title}<em>{whyEnu.titleEm}</em></h2>
-        <p className={styles.sectionSubtitle}>{whyEnu.subtitle}</p>
+        <span className={styles.sectionEyebrow}>{whyEun.eyebrow}</span>
+        <h2 className={styles.sectionTitle}>{whyEun.title}<em>{whyEun.titleEm}</em></h2>
+        <p className={styles.sectionSubtitle}>{whyEun.subtitle}</p>
       </div>
       <div ref={containerRef} className={styles.featuresGrid}>
         {FEATURES.map((f, i) => (

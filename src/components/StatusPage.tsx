@@ -361,7 +361,7 @@ export default function StatusPage() {
             <li>我们承诺定期公开财务收支，接受玩家监督</li>
           </ul>
           <p className={styles.noticeText}>
-            感谢每一位愿意支持 ENU 的玩家，你们的支持是服务器持续运营的动力。
+            感谢每一位愿意支持 EUN 的玩家，你们的支持是服务器持续运营的动力。
           </p>
         </section>
 
@@ -373,8 +373,8 @@ export default function StatusPage() {
       </main>
 
       <footer className={styles.footer}>
-        <span className={styles.footerLogo}>ENU</span>
-        <p className={styles.footerText}>© 2026 ENU Server · All rights reserved</p>
+        <span className={styles.footerLogo}>EUN</span>
+        <p className={styles.footerText}>© 2026 EUN Server · All rights reserved</p>
       </footer>
     </div>
   )

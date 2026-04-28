@@ -169,7 +169,7 @@ export default function AboutPage() {
           <span className={styles.eyebrow}>ABOUT US</span>
           <h1 className={styles.title}>认识我们</h1>
           <p className={styles.subtitle}>
-            ENU 生电服由一群热爱原版 Minecraft 的玩家共同建立，致力于提供<br />
+            EUN 生电服由一群热爱原版 Minecraft 的玩家共同建立，致力于提供<br />
             纯净、稳定、公平的生存体验，不干预、不妥协。
           </p>
         </div>
@@ -179,7 +179,7 @@ export default function AboutPage() {
           <div className={styles.storyInner}>
             <h2 className={styles.storyTitle}>我们的故事</h2>
             <p className={styles.storyText}>
-              ENU 服务器从一台简单的机器和一个简单的想法起步——在这里，每一块方块都有意义，每一条红石线路都值得被认真对待。我们拒绝传送、拒绝死亡不掉落、拒绝任何削弱原版体验的妥协，因为我们相信，最好的 Minecraft 就是原版的 Minecraft。
+              EUN 服务器从一台简单的机器和一个简单的想法起步——在这里，每一块方块都有意义，每一条红石线路都值得被认真对待。我们拒绝传送、拒绝死亡不掉落、拒绝任何削弱原版体验的妥协，因为我们相信，最好的 Minecraft 就是原版的 Minecraft。
             </p>
             <p className={styles.storyText}>
               服务器采用白名单制度，每一位成员都经过筛选，目的只有一个：让这里成为真正热爱这款游戏的人可以长期定居的地方。
@@ -207,7 +207,7 @@ export default function AboutPage() {
             <div className={styles.coreMemberPlaceholder}>
               <div className={styles.coreMemberPlaceholderInner}>
                 <span className={styles.coreMemberPlaceholderTitle}>虚位以待</span>
-                <span className={styles.coreMemberPlaceholderSub}>ENU 大家庭等待你的加入</span>
+                <span className={styles.coreMemberPlaceholderSub}>EUN 大家庭等待你的加入</span>
               </div>
             </div>
           </div>
