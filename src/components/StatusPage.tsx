@@ -3,6 +3,7 @@
 import { useMemo, useState, useEffect, useRef } from 'react'
 import styles from './status.module.css'
 import Navbar from './Navbar'
+import PlayerAvatar from './PlayerAvatar'
 import { SPONSORS, EXPENSES, SERVER_CONFIG } from '../data/sponsors'
 
 function useCountUp(target: number, duration = 1500) {
@@ -179,9 +180,9 @@ export default function StatusPage() {
                       i + 1
                     )}
                   </span>
-                  <img 
-                    src={`https://mc-heads.net/avatar/${s.name}/40`} 
-                    alt={s.name}
+                  <PlayerAvatar
+                    username={s.name}
+                    size={40}
                     className={styles.rankingAvatar}
                   />
                   <span className={styles.rankingName}>{s.name}</span>
@@ -204,9 +205,9 @@ export default function StatusPage() {
             <div className={styles.sponsorList}>
               {SPONSORS.map((s, i) => (
                 <div key={i} className={styles.sponsorItem}>
-                  <img 
-                    src={`https://mc-heads.net/avatar/${s.name}/48`} 
-                    alt={s.name}
+                  <PlayerAvatar
+                    username={s.name}
+                    size={48}
                     className={styles.sponsorAvatar}
                   />
                   <div className={styles.sponsorInfo}>

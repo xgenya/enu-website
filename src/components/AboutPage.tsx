@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useRef, useEffect, useState } from 'react'
 import styles from './about.module.css'
 import Navbar from './Navbar'
+import PlayerAvatar from './PlayerAvatar'
 
 const PARTICLES = [
   { left: '8%',  delay: '0s',   duration: '12s', size: 3 },
@@ -24,11 +25,9 @@ function CoreMemberCard({ username, name, color }: { username: string; name: str
   return (
     <div className={styles.coreMemberCard} style={{ '--member-color': color } as React.CSSProperties}>
       <div className={styles.coreMemberContent}>
-        <img
-          src={`https://mc-heads.net/avatar/${username}/48`}
-          alt={username}
-          width={48}
-          height={48}
+        <PlayerAvatar
+          username={username}
+          size={48}
           className={styles.coreMcAvatar}
         />
         <div className={styles.coreMemberName}>{name}</div>
@@ -40,11 +39,9 @@ function CoreMemberCard({ username, name, color }: { username: string; name: str
 function McAvatar({ username, color }: { username: string; color: string }) {
   return (
     <div className={styles.avatarContainer} style={{ '--member-color': color } as React.CSSProperties}>
-      <img
-        src={`https://mc-heads.net/avatar/${username}/64`}
-        alt={username}
-        width={64}
-        height={64}
+      <PlayerAvatar
+        username={username}
+        size={64}
         className={styles.mcAvatar}
       />
     </div>
@@ -207,6 +204,12 @@ export default function AboutPage() {
             {CORE_MEMBERS.map((member) => (
               <CoreMemberCard key={member.username} {...member} />
             ))}
+            <div className={styles.coreMemberPlaceholder}>
+              <div className={styles.coreMemberPlaceholderInner}>
+                <span className={styles.coreMemberPlaceholderTitle}>虚位以待</span>
+                <span className={styles.coreMemberPlaceholderSub}>ENU 大家庭等待你的加入</span>
+              </div>
+            </div>
           </div>
         </section>
 

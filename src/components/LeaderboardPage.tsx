@@ -3,6 +3,7 @@
 import { useState, useMemo, useRef, useEffect } from 'react'
 import styles from './leaderboard.module.css'
 import Navbar from './Navbar'
+import PlayerAvatar from './PlayerAvatar'
 import { PLAYERS, LEADERBOARDS, LeaderboardType, PlayerStats } from '../data/leaderboard'
 
 const PARTICLES = [
@@ -145,9 +146,9 @@ function LeaderboardCard({
         {sorted.map((p, i) => (
           <div key={p.name} className={styles.previewItem}>
             <span className={styles.previewRank}>{i + 1}</span>
-            <img 
-              src={`https://mc-heads.net/avatar/${p.name}/24`} 
-              alt={p.name}
+            <PlayerAvatar
+              username={p.name}
+              size={24}
               className={styles.previewAvatar}
             />
             <span className={styles.previewName}>{p.name}</span>
@@ -181,9 +182,9 @@ function FullLeaderboard({ board, players }: { board: LeaderboardType; players: 
             <span className={styles.restRank}>
               {i < 3 ? ['🥇', '🥈', '🥉'][i] : i + 1}
             </span>
-            <img 
-              src={`https://mc-heads.net/avatar/${p.name}/40`} 
-              alt={p.name}
+            <PlayerAvatar
+              username={p.name}
+              size={40}
               className={styles.restAvatar}
             />
             <span className={styles.restName}>{p.name}</span>

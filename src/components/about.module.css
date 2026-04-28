@@ -402,6 +402,48 @@
   word-break: break-all;
 }
 
+/* Placeholder "虚位以待" card */
+.coreMemberPlaceholder {
+  border: 1px dashed rgba(93,184,93,0.2);
+  border-radius: 10px;
+  background: rgba(93,184,93,0.02);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.coreMemberPlaceholder:hover {
+  border-color: rgba(93,184,93,0.4);
+  background: rgba(93,184,93,0.05);
+}
+
+.coreMemberPlaceholderInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 20px;
+  text-align: center;
+}
+
+.coreMemberPlaceholderTitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: rgba(93,184,93,0.45);
+  letter-spacing: 2px;
+}
+
+.coreMemberPlaceholderSub {
+  font-size: 11px;
+  color: rgba(93,184,93,0.3);
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+}
+
 /* CTA */
 .ctaSection {
   text-align: center;
