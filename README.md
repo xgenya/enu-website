@@ -83,8 +83,11 @@ docker compose up -d
 **更新镜像：**
 
 ```bash
-docker compose pull && docker compose up -d
+docker compose pull
+docker compose up -d --force-recreate
 ```
+
+如果站点前面接了 CDN 或反向代理缓存，更新镜像后请清理 HTML 缓存，或确保 `/`、页面路由不缓存；`/_next/static/*` 可长期缓存。页面 HTML 缓存旧构建时，可能会引用已经不存在的 CSS/JS chunk，导致首屏样式 404。
 
 
 ### 方式二：Node.js 直接部署
@@ -172,4 +175,3 @@ enu-website/
 Made with ❤️ for ENU Minecraft Server
 
 </div>
-
