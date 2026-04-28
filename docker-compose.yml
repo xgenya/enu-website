@@ -1,7 +1,6 @@
 services:
   enu-website:
     image: ghcr.io/xgenya/enu-website:latest
-    pull_policy: always
     container_name: enu-website
     restart: always
     ports:
