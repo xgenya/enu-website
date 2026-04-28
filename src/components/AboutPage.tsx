@@ -21,7 +21,9 @@ import teamConfig from '../../config/team'
 const CORE_MEMBERS = teamConfig.coreMembers
 const TEAM = teamConfig.team
 
-function CoreMemberCard({ username, name, color }: { username: string; name: string; color: string }) {
+function CoreMemberCard({ username, name, color, desc }: { username: string; name: string; color: string; desc: string }) {
+  const hasDesc = desc && desc.trim() !== ''
+  
   return (
     <div className={styles.coreMemberCard} style={{ '--member-color': color } as React.CSSProperties}>
       <div className={styles.coreMemberContent}>
@@ -30,7 +32,12 @@ function CoreMemberCard({ username, name, color }: { username: string; name: str
           size={48}
           className={styles.coreMcAvatar}
         />
-        <div className={styles.coreMemberName}>{name}</div>
+        <div className={styles.coreMemberInfo}>
+          <div className={styles.coreMemberName}>{name}</div>
+          <div className={`${styles.coreMemberDesc} ${!hasDesc ? styles.coreMemberDescEmpty : ''}`}>
+            {hasDesc ? desc : "这位玩家还没有添加个人介绍"}
+          </div>
+        </div>
       </div>
     </div>
   )

@@ -342,12 +342,12 @@
 /* Core members grid */
 .coreMemberGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 
 @media (max-width: 700px) {
-  .coreMemberGrid { grid-template-columns: repeat(2, 1fr); }
+  .coreMemberGrid { grid-template-columns: 1fr; }
 }
 
 .coreMemberCard {
@@ -377,7 +377,7 @@
 
 .coreMemberContent {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 14px;
   padding: 16px 20px;
 }
@@ -394,12 +394,32 @@
   flex-shrink: 0;
 }
 
+.coreMemberInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
 .coreMemberName {
   font-size: 14px;
   font-weight: 600;
   color: #c8d8c8;
   letter-spacing: 0.5px;
   word-break: break-all;
+}
+
+.coreMemberDesc {
+  font-size: 11px;
+  color: #7a8f7a;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+}
+
+.coreMemberDescEmpty {
+  color: #556655;
+  opacity: 0.6;
+  font-style: italic;
 }
 
 /* Placeholder "虚位以待" card */

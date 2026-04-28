@@ -29,16 +29,16 @@ const team = {
 
   // 核心玩家列表（展示于 About 页面次要位置）
   coreMembers: [
-    { name: "sixteen0522", username: "sixteen0522", color: "#7090e0" },
-    { name: "motor10086", username: "motor10086", color: "#e07878" },
-    { name: "Y_jiaopiYa", username: "Y_jiaopiYa", color: "#c070c0" },
-    { name: "zongcheng", username: "zongcheng", color: "#70c0c0" },
-    { name: "dxh5201314", username: "dxh5201314", color: "#e0a060" },
-    { name: "zqrbobo", username: "zqrbobo", color: "#5db85d" },
-    { name: "Zerostar_0", username: "Zerostar_0", color: "#c0c060" },
-    { name: "rhandoms", username: "rhandoms", color: "#c08060" },
-    { name: "aimi7", username: "aimi7", color: "#60a0e0" },
-    { name: "Tastemedicine", username: "Tastemedicine", color: "#e07878" },
+    { name: "sixteen0522", username: "sixteen0522", color: "#7090e0", desc: "" },
+    { name: "motor10086", username: "motor10086", color: "#e07878", desc: "" },
+    { name: "Y_jiaopiYa", username: "Y_jiaopiYa", color: "#c070c0", desc: "" },
+    { name: "zongcheng", username: "zongcheng", color: "#70c0c0", desc: "" },
+    { name: "dxh5201314", username: "dxh5201314", color: "#e0a060", desc: "" },
+    { name: "zqrbobo", username: "zqrbobo", color: "#5db85d", desc: "" },
+    { name: "Zerostar_0", username: "Zerostar_0", color: "#c0c060", desc: "" },
+    { name: "rhandoms", username: "rhandoms", color: "#c08060", desc: "" },
+    { name: "aimi7", username: "aimi7", color: "#60a0e0", desc: "" },
+    { name: "Tastemedicine", username: "Tastemedicine", color: "#e07878", desc: "" },
   ],
 };
 
