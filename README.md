@@ -13,7 +13,7 @@
 [![Docker](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 [![License](https://img.shields.io/badge/License-GPL--3.0-green)](LICENSE)
 
-🔗 **预览：[eun.remrin.dev](https://eun.remrin.dev)**
+🔗 **预览：[eun.remrin.dev](https://enu.remrin.dev)**
 
 </div>
 
